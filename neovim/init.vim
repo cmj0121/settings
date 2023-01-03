@@ -56,3 +56,11 @@ autocmd BufRead,BufNewFile *.html setlocal ts=2 sw=2 expandtab
 autocmd BufRead,BufNewFile *.htm  setlocal ts=2 sw=2 expandtab
 autocmd BufRead,BufNewFile *.js   setlocal ts=2 sw=2 expandtab
 augroup END
+
+" --------------------- "
+" Plugins               "
+" --------------------- "
+call plug#begin('~/.vim/plugged')
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'f-person/git-blame.nvim'
+call plug#end()
