@@ -1,6 +1,6 @@
-SUBDIR :=
+SUBDIR := neovim
 
-.PHONY: all clean test run build upgrade help $(SUBDIR)
+.PHONY: all clean test run build upgrade help install $(SUBDIR)
 
 all: $(SUBDIR) 		# default action
 	@[ -f .git/hooks/pre-commit ] || pre-commit install --install-hooks
@@ -23,6 +23,8 @@ help:				# show this message
 	@printf "\n"
 	@perl -nle 'print $$& if m{^[\w-]+:.*?#.*$$}' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?#"} {printf "    %-18s %s\n", $$1, $$2}'
+
+install: $(SUBDIR) 	# install all settings
 
 $(SUBDIR):
 	$(MAKE) -C $@ $(MAKECMDGOALS)

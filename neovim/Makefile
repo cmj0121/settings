@@ -14,7 +14,6 @@ run:			# run in the local environment
 build:			# build the binary/library
 
 upgrade:		# upgrade all the necessary packages
-	pre-commit autoupdate
 
 help:			# show this message
 	@printf "Usage: make [OPTION]\n"
