@@ -1,4 +1,4 @@
-SUBDIR := neovim
+SUBDIR := profile neovim
 
 .PHONY: all clean test run build upgrade help install $(SUBDIR)
 
