@@ -25,3 +25,12 @@ repos:
       - id: script-must-have-extension
       - id: script-must-not-have-extension
       - id: shfmt
+
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+    - id: detect-secrets
+  - repo: https://github.com/zricethezav/gitleaks
+    rev: v8.15.2
+    hooks:
+    - id: gitleaks-docker
