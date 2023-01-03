@@ -74,6 +74,4 @@ map <C-i> :PlugInstall<CR>
 map <C-u> :PlugUpdate<CR> :PlugUpgrade<CR>
 
 call plug#begin('~/.vim/plugged')
-Plug 'nvim-tree/nvim-tree.lua'
-Plug 'f-person/git-blame.nvim'
 call plug#end()
