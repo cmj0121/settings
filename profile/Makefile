@@ -1,4 +1,5 @@
 DST := ~/.bashrc ~/.profile
+EXT := ~/.bash_aliases
 
 .PHONY: all clean test run build upgrade help install
 
@@ -21,8 +22,12 @@ help:			# show this message
 	@perl -nle 'print $$& if m{^[\w-]+:.*?#.*$$}' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?#"} {printf "    %-18s %s\n", $$1, $$2}'
 
-install: $(DST)		# install neovim settings
+install: $(DST) $(EXT)	# install neovim settings
 
-$(DST): bashrc
+~/.bashrc: bashrc
+	@mkdir -p $(shell dirname $@)
+	install -m644 $< $@
+
+~/.bash_aliases: bash_aliases
 	@mkdir -p $(shell dirname $@)
 	install -m644 $< $@
