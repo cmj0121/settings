@@ -51,6 +51,7 @@ alias_files=("~/.bash_aliases" "~/.cargo/env" "~/.poetry/env" )
 for f in ${alias_files[@]}; do [ -f "$f" ] && source $f; done
 unset alias_files
 
+
 ## ========= Completion definitions ========= ##
 [ -f /etc/bash_completion ] && source /etc/bash_completion
 [ -d ~/.bash_completion.d/ ] && for f in ~/.bash_completion.d/*; do source $f; done
@@ -62,4 +63,8 @@ if [ `uname` = Darwin -o "$TERM_PROGRAM" = Apple_Terminal ]; then
 	export CLICOLOR=1
 	export TERM=xterm-color
 	export LSCOLORS=ExFxBxDxCxegedabagacad
+
+	export PATH=/opt/homebrew/bin:$PATH
+
+	export BASH_SILENCE_DEPRECATION_WARNING=1
 fi

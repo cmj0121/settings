@@ -1,4 +1,4 @@
-DST := ~/.bashrc
+DST := ~/.bashrc ~/.profile
 
 .PHONY: all clean test run build upgrade help install
 
@@ -23,6 +23,6 @@ help:			# show this message
 
 install: $(DST)		# install neovim settings
 
-~/.bashrc: bashrc
+$(DST): bashrc
 	@mkdir -p $(shell dirname $@)
 	install -m644 $< $@
