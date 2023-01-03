@@ -1,4 +1,4 @@
-SUBDIR := profile neovim
+SUBDIR := profile neovim tmux
 
 .PHONY: all clean test run build upgrade help install $(SUBDIR)
 
