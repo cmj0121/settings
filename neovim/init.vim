@@ -9,6 +9,8 @@ syntax on
 " set the tab/space width
 set tabstop=4				" tab equals to number of spaces
 set softtabstop=4
+set nosmarttab
+set noautoindent
 " control the folder setting "
 set foldenable
 set foldmethod=indent
@@ -23,6 +25,7 @@ set incsearch				" incremental search result
 " enable the footer control for vim "
 set modelines=4
 " performance and preference "
+set mouse=
 set number					" add line numbers
 set numberwidth=4
 set colorcolumn=128			" set the column border for good coding style
@@ -33,11 +36,18 @@ set updatetime=200			" written to disk if nothing is typed
 set visualbell				" use visual bell instead of beeping
 set exrc
 
+set list					" displayed the empty characters
+set listchars=tab:>.
+
+" customized syntax highlight
+hi Whitespace cterm=NONE ctermbg=NONE ctermfg=gray
+hi Visual cterm=NONE ctermbg=yellow ctermfg=black
 
 " ------------------ "
 " Shortcut / Hotkey  "
 " ------------------ "
 imap <S-tab> <c-p>
+map <C-l> :source $MYVIMRC<CR> :echo "reload config"<CR>
 map <C-h> :%! xxd<CR>
 map <C-g> :w <CR> :!make clean && make -j4<CR>
 " Window Tab Control "
@@ -60,6 +70,9 @@ augroup END
 " --------------------- "
 " Plugins               "
 " --------------------- "
+map <C-i> :PlugInstall<CR>
+map <C-u> :PlugUpdate<CR> :PlugUpgrade<CR>
+
 call plug#begin('~/.vim/plugged')
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'f-person/git-blame.nvim'
