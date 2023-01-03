@@ -44,3 +44,15 @@ map <C-g> :w <CR> :!make clean && make -j4<CR>
 map <C-w> :tabclose<CR>
 map <C-n> :tabnext<CR>
 map <C-p> :tabprevious<CR>
+
+" --------------------- "
+" global syntax setting "
+" --------------------- "
+augroup fsyntax
+autocmd BufRead,BufNewFile *.yaml setlocal ts=2 sw=2 expandtab
+autocmd BufRead,BufNewFile *.yml  setlocal ts=2 sw=2 expandtab
+autocmd BufRead,BufNewFile *.py   setlocal ts=4 sw=4 expandtab
+autocmd BufRead,BufNewFile *.html setlocal ts=2 sw=2 expandtab
+autocmd BufRead,BufNewFile *.htm  setlocal ts=2 sw=2 expandtab
+autocmd BufRead,BufNewFile *.js   setlocal ts=2 sw=2 expandtab
+augroup END
