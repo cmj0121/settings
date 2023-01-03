@@ -36,8 +36,8 @@ set updatetime=200			" written to disk if nothing is typed
 set visualbell				" use visual bell instead of beeping
 set exrc
 
-set list					" displayed the empty characters
-set listchars=tab:>.
+"set list					" displayed the empty characters
+"set listchars=tab:>.
 
 " customized syntax highlight
 hi Whitespace cterm=NONE ctermbg=NONE ctermfg=gray
