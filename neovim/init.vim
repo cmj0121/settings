@@ -8,7 +8,6 @@ syntax on
 
 " set the tab/space width
 set tabstop=4				" tab equals to number of spaces
-set softtabstop=4
 set nosmarttab
 set noautoindent
 " control the folder setting "
@@ -65,6 +64,13 @@ autocmd BufRead,BufNewFile *.py   setlocal ts=4 sw=4 expandtab
 autocmd BufRead,BufNewFile *.html setlocal ts=2 sw=2 expandtab
 autocmd BufRead,BufNewFile *.htm  setlocal ts=2 sw=2 expandtab
 autocmd BufRead,BufNewFile *.js   setlocal ts=2 sw=2 expandtab
+augroup END
+
+" --------------------- "
+" skeleton              "
+" --------------------- "
+augroup templates
+autocmd BufNewFile Makefile  0r ~/.vim/templates/skeleton.Makefile
 augroup END
 
 " --------------------- "
