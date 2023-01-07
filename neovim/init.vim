@@ -64,6 +64,8 @@ autocmd BufRead,BufNewFile *.py   setlocal ts=4 sw=4 expandtab
 autocmd BufRead,BufNewFile *.html setlocal ts=2 sw=2 expandtab
 autocmd BufRead,BufNewFile *.htm  setlocal ts=2 sw=2 expandtab
 autocmd BufRead,BufNewFile *.js   setlocal ts=2 sw=2 expandtab
+autocmd BufRead,BufNewFile *.dart setlocal ts=2 sw=2 expandtab
+autocmd BufRead,BufNewFile *.zg   setlocal ft=zerg
 augroup END
 
 " --------------------- "
