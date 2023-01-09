@@ -8,6 +8,7 @@ syntax on
 
 " set the tab/space width
 set tabstop=4				" tab equals to number of spaces
+set softtabstop=4
 set nosmarttab
 set noautoindent
 " control the folder setting "
@@ -65,7 +66,7 @@ autocmd BufRead,BufNewFile *.html setlocal ts=2 sw=2 expandtab
 autocmd BufRead,BufNewFile *.htm  setlocal ts=2 sw=2 expandtab
 autocmd BufRead,BufNewFile *.js   setlocal ts=2 sw=2 expandtab
 autocmd BufRead,BufNewFile *.dart setlocal ts=2 sw=2 expandtab
-autocmd BufRead,BufNewFile *.zg   setlocal ft=zerg
+autocmd BufRead,BufNewFile *.zg   setlocal ts=4 sw=4 ft=zerg
 augroup END
 
 " --------------------- "
