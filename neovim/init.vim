@@ -83,4 +83,12 @@ map <C-i> :PlugInstall<CR>
 map <C-u> :PlugUpdate<CR> :PlugUpgrade<CR>
 
 call plug#begin('~/.vim/plugged')
+Plug 'numToStr/Comment.nvim'
+Plug 'rhysd/git-messenger.vim'
 call plug#end()
+
+" use for the numToStr/Comment.nvim
+" default keymap
+" <g> <c>  Line-comment keymap
+" <g> <b>  Block-comment keymap
+lua require('Comment').setup()
