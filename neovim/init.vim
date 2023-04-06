@@ -9,6 +9,7 @@ syntax on
 " set the tab/space width
 set tabstop=4				" tab equals to number of spaces
 set softtabstop=4
+set shiftwidth=4
 set nosmarttab
 set noautoindent
 " control the folder setting "
@@ -85,10 +86,28 @@ map <C-u> :PlugUpdate<CR> :PlugUpgrade<CR>
 call plug#begin('~/.vim/plugged')
 Plug 'numToStr/Comment.nvim'
 Plug 'rhysd/git-messenger.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 call plug#end()
 
-" use for the numToStr/Comment.nvim
-" default keymap
-" <g> <c>  Line-comment keymap
-" <g> <b>  Block-comment keymap
-lua require('Comment').setup()
+lua << __EOF__
+-- use for the numToStr/Comment.nvim
+-- default keymap
+-- <g> <c>  Line-comment keymap
+-- <g> <b>  Block-comment keymap
+local cmt = require("Comment")
+cmt.setup()
+
+-- use for jose-elias-alvarez/null-ls.nvim
+local null_ls = require("null-ls")
+null_ls.setup({
+	sources = {
+		null_ls.builtins.diagnostics.actionlint,
+		null_ls.builtins.diagnostics.flake8,
+	    null_ls.builtins.diagnostics.mypy,
+		null_ls.builtins.diagnostics.shellcheck,
+		null_ls.builtins.formatting.ruff,
+		null_ls.builtins.formatting.reorder_python_imports,
+	},
+})
+__EOF__
