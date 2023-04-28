@@ -22,6 +22,8 @@ help:			# show this message
 		awk 'BEGIN {FS = ":.*?#"} {printf "    %-18s %s\n", $$1, $$2}'
 
 install: $(DST)		# install neovim settings
+	brew install actionlint diagnostics checkmake commitlint flake8 hadolint mypy
+	npm install write-good --global
 
 ~/.config/nvim/init.vim: init.vim
 	@mkdir -p $(shell dirname $@)

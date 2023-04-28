@@ -102,12 +102,24 @@ cmt.setup()
 local null_ls = require("null-ls")
 null_ls.setup({
 	sources = {
+		-- for schell script
+		null_ls.builtins.diagnostics.shellcheck,
+		null_ls.builtins.diagnostics.checkmake,
+		null_ls.builtins.diagnostics.commitlint,
+		null_ls.builtins.diagnostics.hadolint,
+		-- for Python
 		null_ls.builtins.diagnostics.actionlint,
 		null_ls.builtins.diagnostics.flake8,
 	    null_ls.builtins.diagnostics.mypy,
-		null_ls.builtins.diagnostics.shellcheck,
 		null_ls.builtins.formatting.ruff,
 		null_ls.builtins.formatting.reorder_python_imports,
+		-- for Go
+		null_ls.builtins.code_actions.gomodifytags,
+		null_ls.builtins.code_actions.impl,
+		-- for GitHub Action
+		null_ls.builtins.diagnostics.actionlint,
+		-- for Grammarly
+		null_ls.builtins.diagnostics.write_good,
 	},
 })
 __EOF__
