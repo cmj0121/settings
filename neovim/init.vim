@@ -88,6 +88,7 @@ Plug 'numToStr/Comment.nvim'
 Plug 'rhysd/git-messenger.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'github/copilot.vim'
 call plug#end()
 
 lua << __EOF__
