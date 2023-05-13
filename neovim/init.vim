@@ -50,7 +50,7 @@ hi Visual cterm=NONE ctermbg=yellow ctermfg=black
 imap <S-tab> <c-p>
 map <C-l> :source $MYVIMRC<CR> :echo "reload config"<CR>
 map <C-h> :%! xxd<CR>
-map <C-g> :w <CR> :!make clean && make -j4<CR>
+map <C-m> :w <CR> :!make clean && make -j4<CR>
 " Window Tab Control "
 map <C-w> :tabclose<CR>
 map <C-n> :tabnext<CR>
@@ -90,6 +90,10 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'github/copilot.vim'
 call plug#end()
+
+let g:copilot_filetypes = {
+	\ 'markdown': v:true
+	\ }
 
 lua << __EOF__
 -- use for the numToStr/Comment.nvim
