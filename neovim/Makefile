@@ -1,4 +1,4 @@
-DST := ~/.config/nvim/init.vim
+DST := ~/.config/nvim/init.vim ~/.local/share/nvim/site/autoload/plug.vim
 
 .PHONY: all clean test run build upgrade help install
 
@@ -28,3 +28,6 @@ install: $(DST)		# install neovim settings
 ~/.config/nvim/init.vim: init.vim
 	@mkdir -p $(shell dirname $@)
 	install -m644 $< $@
+
+~/.local/share/nvim/site/autoload/plug.vim:
+	curl -fLo $@ --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

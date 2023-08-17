@@ -23,8 +23,14 @@ help:			# show this message
 		awk 'BEGIN {FS = ":.*?#"} {printf "    %-18s %s\n", $$1, $$2}'
 
 install: $(DST) $(EXT)	# install neovim settings
+	@echo you many need to type 'chsh -s /bin/bash'
+	brew install bash-completion shellcheck
 
 ~/.bashrc: bashrc
+	@mkdir -p $(shell dirname $@)
+	install -m644 $< $@
+
+~/.profile: bashrc
 	@mkdir -p $(shell dirname $@)
 	install -m644 $< $@
 

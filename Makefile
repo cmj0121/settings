@@ -19,6 +19,7 @@ help:				# show this message
 		awk 'BEGIN {FS = ":.*?#"} {printf "    %-18s %s\n", $$1, $$2}'
 
 install: $(SUBDIR) 	# install all settings
+	brew install pre-commit ruby
 
 publish:			# publish to all repo
 	git remote | xargs -n 1 git push

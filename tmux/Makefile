@@ -22,6 +22,7 @@ help:			# show this message
 		awk 'BEGIN {FS = ":.*?#"} {printf "    %-18s %s\n", $$1, $$2}'
 
 install: $(DST)		# install neovim settings
+	brew install tmux
 
 ~/.tmux.conf: tmux.conf
 	install -m644 $< $@
