@@ -1,4 +1,4 @@
-SUBDIR := profile neovim tmux
+SUBDIR := profile neovim tmux git
 
 .PHONY: all clean upgrade help install publish $(SUBDIR)
 
