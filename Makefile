@@ -1,6 +1,4 @@
-SUBDIR := profile neovim tmux git
-
-.PHONY: all clean upgrade help install publish $(SUBDIR)
+.PHONY: all clean test upgrade help
 
 all: $(SUBDIR) 		# default action
 	@[ -f .git/hooks/pre-commit ] || pre-commit install --install-hooks
@@ -8,6 +6,8 @@ all: $(SUBDIR) 		# default action
 
 clean: $(SUBDIR)	# clean-up environment
 	@find . -name '*.sw[po]' -delete
+
+test:				# run all tests
 
 upgrade:			# upgrade all the necessary packages
 	pre-commit autoupdate
@@ -17,12 +17,3 @@ help:				# show this message
 	@printf "\n"
 	@perl -nle 'print $$& if m{^[\w-]+:.*?#.*$$}' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?#"} {printf "    %-18s %s\n", $$1, $$2}'
-
-install: $(SUBDIR) 	# install all settings
-	brew install pre-commit ruby
-
-publish:			# publish to all repo
-	git remote | xargs -n 1 git push
-
-$(SUBDIR):
-	$(MAKE) -C $@ $(MAKECMDGOALS)
