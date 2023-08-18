@@ -1,0 +1,31 @@
+---
+- name: Multiplexer - install tmux
+  community.general.homebrew:
+    state: present
+    name:
+      - tmux
+      - bash
+
+- name: Multiplexer - copy tmux.conf
+  ansible.builtin.copy:
+    src: tmux.conf
+    dest: ~/.tmux.conf
+    mode: "0644"
+
+- name: Multiplexer - copy ~/.bashrc
+  ansible.builtin.copy:
+    src: bashrc
+    dest: ~/.bashrc
+    mode: "0644"
+
+- name: Multiplexer - copy ~/.profile
+  ansible.builtin.copy:
+    src: bashrc
+    dest: ~/.profile
+    mode: "0644"
+
+- name: Multiplexer - copy ~/.bash_aliases.d
+  ansible.builtin.copy:
+    src: bash_aliases.d/
+    dest: ~/.bash_aliases.d
+    mode: "0755"
