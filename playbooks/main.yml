@@ -4,6 +4,8 @@
     - homebrew
 
   tasks:
+    - name: Health - ping
+      ansible.builtin.ping:
     - name: Homebrew - install basic dependency
       community.general.homebrew:
         state: present
