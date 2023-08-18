@@ -28,3 +28,9 @@
     src: init.vim
     dest: ~/.config/nvim/init.vim
     mode: "0644"
+
+- name: Editor - install skeleton templates
+  ansible.builtin.copy:
+    src: vim/templates/
+    dest: ~/.vim/templates/
+    mode: "0644"
