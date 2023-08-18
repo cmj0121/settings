@@ -10,8 +10,8 @@ clean: 				# clean-up environment
 test:				# run all tests
 
 install:			# install the local DEV environment
-	./bootstrap
-	ansible-galaxy collection install community.general
+	@./bootstrap
+	@ansible-galaxy collection install community.general
 	ansible-playbook -i playbooks/inventory.ini playbooks/main.yml
 
 upgrade:			# upgrade all the necessary packages
