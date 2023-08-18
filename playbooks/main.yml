@@ -29,4 +29,6 @@
 
   roles:
     - role: editor
+      tags: editor
     - role: multiplexer
+      tags: multiplexer
