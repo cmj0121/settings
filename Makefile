@@ -1,13 +1,16 @@
-.PHONY: all clean test upgrade help
+.PHONY: all clean test install upgrade help
 
-all: $(SUBDIR) 		# default action
+all: 		 		# default action
 	@[ -f .git/hooks/pre-commit ] || pre-commit install --install-hooks
 	@git config commit.template .git-commit-template
 
-clean: $(SUBDIR)	# clean-up environment
+clean: 				# clean-up environment
 	@find . -name '*.sw[po]' -delete
 
 test:				# run all tests
+
+install:			# install the local DEV environment
+	./bootstrap
 
 upgrade:			# upgrade all the necessary packages
 	pre-commit autoupdate
