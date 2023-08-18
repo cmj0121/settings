@@ -12,4 +12,6 @@ if [ "$(uname)" = Darwin ] || [ "$TERM_PROGRAM" = Apple_Terminal ]; then
 	alias ls='ls -w'
 fi
 
+alias vim="nvim -p"
+
 # vim: ft=bash:
