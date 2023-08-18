@@ -32,3 +32,5 @@
       tags: editor
     - role: multiplexer
       tags: multiplexer
+    - role: security
+      tags: security

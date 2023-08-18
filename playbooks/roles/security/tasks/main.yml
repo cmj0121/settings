@@ -1,0 +1,13 @@
+---
+- name: Security - install passive packages
+  community.general.homebrew:
+    state: present
+    name:
+      - wireguard-tools
+      - termshark
+
+- name: Security - install active packages
+  community.general.homebrew:
+    state: present
+    name:
+      - nmap

@@ -1,4 +1,4 @@
-.PHONY: all clean test install upgrade help
+.PHONY: all clean test install install-tag upgrade help
 
 all: 		 		# default action
 	@[ -f .git/hooks/pre-commit ] || pre-commit install --install-hooks
@@ -13,6 +13,9 @@ install:			# install the local DEV environment
 	@./bootstrap
 	@ansible-galaxy collection install community.general
 	ansible-playbook -i playbooks/inventory.ini playbooks/main.yml
+
+install-tag:		# install the package with tags
+	ansible-playbook -i playbooks/inventory.ini playbooks/main.yml --tags $(TAG)
 
 upgrade:			# upgrade all the necessary packages
 	pre-commit autoupdate
