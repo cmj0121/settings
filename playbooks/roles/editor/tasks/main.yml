@@ -1,0 +1,30 @@
+---
+- name: Editor - install Neovim
+  community.general.homebrew:
+    state: present
+    name:
+      - nvim
+
+- name: Editor - create plugin folder
+  ansible.builtin.file:
+    path: ~/.local/share/nvim/site/autoload/
+    state: directory
+    mode: "0755"
+
+- name: Editor - setup default plugin
+  ansible.builtin.uri:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: ~/.local/share/nvim/site/autoload/plug.vim
+    force: true
+
+- name: Editor - create init folder
+  ansible.builtin.file:
+    path: ~/.config/nvim
+    state: directory
+    mode: "0755"
+
+- name: Editor - install init.vim
+  ansible.builtin.copy:
+    src: init.vim
+    dest: ~/.config/nvim/init.vim
+    mode: "0644"

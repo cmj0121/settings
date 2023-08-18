@@ -1,0 +1,32 @@
+---
+- name: Settings - install the DEV environment
+  hosts:
+    - homebrew
+
+  tasks:
+    - name: Health - ping
+      ansible.builtin.ping:
+    - name: Homebrew - install basic dependency
+      community.general.homebrew:
+        state: present
+        name:
+          - tree
+          - wget
+          - cloc
+          - htop
+          - watch
+    - name: Homebrew - install languages
+      community.general.homebrew:
+        state: present
+        name:
+          - go
+          - rust
+          - k6
+    - name: Homebrew - upgrade all packages
+      community.general.homebrew:
+        update_homebrew: true
+        upgrade_all: true
+
+  roles:
+    - role: editor
+    - role: multiplexer

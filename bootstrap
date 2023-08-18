@@ -1,0 +1,21 @@
+#! /usr/bin/env sh
+#
+# The bootstrap script for the project. It setup the basic environment
+# and install the dependencies.
+
+## check the brew already installed
+ensure_brew_installed() {
+	if command -v brew >/dev/null 2>&1; then
+		echo "already installed brew, skip"
+		return
+	fi
+
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+}
+
+main() {
+	ensure_brew_installed
+	brew install --quiet pre-commit git ansible shellcheck shfmt
+}
+
+main

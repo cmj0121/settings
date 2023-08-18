@@ -1,3 +1,5 @@
+#! /usr/bin/env bash
+#
 # Author   cmj <cmj@cmj.tw>
 # Version  v0.1.0
 
@@ -46,25 +48,21 @@ case "$color_prompt" in
 esac
 unset color_prompt
 
-## ========= Completion definitions ========= ##
-[ -f /etc/bash_completion ] && source /etc/bash_completion
-[ -d ~/.bash_completion.d/ ] && for f in ~/.bash_completion.d/*; do source $f; done
 [ "$PS1" ] && complete -cf sudo
 
-if command -v brew &>/dev/null; then
-	HOMEBREW=$(brew --prefix)
-	[[ -r "${HOMEBREW}/etc/profile.d/bash_completion.sh" ]] && . "${HOMEBREW}/etc/profile.d/bash_completion.sh"
-fi
-
-[ -f /opt/homebrew/bin/brew ] && export PATH=/opt/homebrew/bin:$PATH
 
 ## ========= Alias definitions ========= ##
+# shellcheck disable=SC1091
+[ -f /etc/bash_completion ] && source /etc/bash_completion
+# shellcheck disable=SC1090
+[ -d ~/.bash_completion.d/ ] && for f in ~/.bash_completion.d/*; do source "$f"; done
+# shellcheck disable=SC1090
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
-[ -f ~/.cargo/env ] && source ~/.cargo/env
-[ -f ~/.poetry/env ] && source ~/.poetry/env
+# shellcheck disable=SC1090
+[ -d ~/.bash_aliases.d/ ] && for f in ~/.bash_aliases.d/*; do source "$f"; done
 
 ## ========= MacOSX specified ========= ##
-if [ `uname` = Darwin -o "$TERM_PROGRAM" = Apple_Terminal ]; then
+if [ "$(uname)" = Darwin ]  || [ "$TERM_PROGRAM" = Apple_Terminal ]; then
 	# color settings
 	export CLICOLOR=1
 	export TERM=xterm-color
