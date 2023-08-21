@@ -4,3 +4,4 @@
     state: present
     name:
       - act
+      - jq
