@@ -34,3 +34,5 @@
       tags: multiplexer
     - role: security
       tags: security
+    - role: coding
+      tags: coding

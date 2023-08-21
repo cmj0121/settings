@@ -6,6 +6,12 @@
       - wireguard-tools
       - termshark
 
+- name: Security - install passive packages (cask)
+  community.general.homebrew_cask:
+    state: present
+    name:
+      - stats
+
 - name: Security - install active packages
   community.general.homebrew:
     state: present

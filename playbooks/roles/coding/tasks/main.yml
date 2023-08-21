@@ -1,0 +1,6 @@
+---
+- name: Coding - install packages
+  community.general.homebrew:
+    state: present
+    name:
+      - act
