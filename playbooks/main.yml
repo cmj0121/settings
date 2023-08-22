@@ -36,3 +36,5 @@
       tags: security
     - role: coding
       tags: coding
+    - role: devops
+      tags: devops

@@ -1,0 +1,7 @@
+---
+- name: DevOps - install packages
+  community.general.homebrew:
+    state: present
+    name:
+      - terraform
+      - argocd
