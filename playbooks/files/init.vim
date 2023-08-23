@@ -89,8 +89,8 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'github/copilot.vim'
-# syntax files
 Plug 'hashivim/vim-terraform'
+Plug 'dart-lang/dart-vim-plugin'
 call plug#end()
 
 let g:copilot_filetypes = {
