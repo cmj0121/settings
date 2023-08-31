@@ -82,7 +82,7 @@ augroup END
 " --------------------- "
 map <C-i> :PlugInstall<CR>
 map <C-u> :PlugUpdate<CR> :PlugUpgrade<CR>
-nnoremap <C-t> :NERDTree<CR>
+map tt :NERDTree<CR>
 
 call plug#begin('~/.vim/plugged')
 Plug 'numToStr/Comment.nvim'
