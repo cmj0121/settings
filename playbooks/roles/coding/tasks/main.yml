@@ -5,3 +5,5 @@
     name:
       - act
       - jq
+      - shellcheck
+      - shfmt
