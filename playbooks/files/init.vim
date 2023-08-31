@@ -82,6 +82,7 @@ augroup END
 " --------------------- "
 map <C-i> :PlugInstall<CR>
 map <C-u> :PlugUpdate<CR> :PlugUpgrade<CR>
+nnoremap <C-t> :NERDTree<CR>
 
 call plug#begin('~/.vim/plugged')
 Plug 'numToStr/Comment.nvim'
@@ -89,6 +90,11 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'github/copilot.vim'
+" editor
+" =====================
+Plug 'scrooloose/nerdtree'
+" syntax highlight
+" =====================
 Plug 'hashivim/vim-terraform'
 Plug 'dart-lang/dart-vim-plugin'
 call plug#end()
