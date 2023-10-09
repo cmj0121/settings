@@ -1,0 +1,8 @@
+---
+- name: Set up HomeLab
+  hosts:
+    - lab
+
+  tasks:
+    - name: Health - ping
+      ansible.builtin.ping:
