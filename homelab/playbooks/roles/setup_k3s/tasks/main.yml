@@ -1,0 +1,6 @@
+---
+- name: K3S - Install
+  ansible.builtin.include_tasks: install.yml
+
+- name: K3S - Download kubeconfig
+  ansible.builtin.include_tasks: download.yml
