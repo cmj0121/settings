@@ -1,0 +1,40 @@
+---
+- name: K3S - Check installation
+  register: is_k3s_installed
+  ansible.builtin.stat:
+    path: /usr/local/bin/k3s
+
+- name: K3S - Download k3s shell
+  when: not is_k3s_installed.stat.exists
+  ansible.builtin.get_url:
+    url: https://get.k3s.io
+    dest: /tmp/setup_k3s.sh
+    mode: "0755"
+
+- name: K3S - Install k3s
+  when: not is_k3s_installed.stat.exists
+  changed_when: false
+  ansible.builtin.command: /tmp/setup_k3s.sh
+
+- name: K3S - Copy K3s service file
+  register: k3s_service
+  become: true
+  ansible.builtin.template:
+    src: k3s.service.j2
+    dest: /etc/systemd/system/k3s.service
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: K3S - Enable and check K3s service
+  become: true
+  ansible.builtin.systemd:
+    name: k3s
+    daemon_reload: true
+    state: restarted
+    enabled: true
+
+- name: K3S - Wait for node-token
+  become: true
+  ansible.builtin.wait_for:
+    path: /var/lib/rancher/k3s/server/node-token

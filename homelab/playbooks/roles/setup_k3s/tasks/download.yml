@@ -1,0 +1,56 @@
+---
+- name: K3S - Get target IP
+  ansible.builtin.set_fact:
+    target_ip: "{{ ansible_ssh_host }}"
+
+- name: K3S - Setup the $HOME/.kube/config on local
+  delegate_to: localhost
+  ansible.builtin.file:
+    path: ~/.kube/configs
+    state: directory
+    recurse: true
+    mode: "0700"
+
+- name: K3S - Download the kubeconf
+  become: true
+  ansible.builtin.fetch:
+    src: /etc/rancher/k3s/k3s.yaml
+    dest: ~/.kube/configs/k3s.yaml
+    flat: true
+
+- name: K3S - Update the kubeconf (target IP)
+  ansible.builtin.replace:
+    path: ~/.kube/configs/k3s.yaml
+    regexp: 127.0.0.1
+    replace: "{{ target_ip }}"
+  delegate_to: localhost
+
+- name: K3S - Update the kubeconf (context name)
+  ansible.builtin.replace:
+    path: ~/.kube/configs/k3s.yaml
+    regexp: default
+    replace: homelab
+  delegate_to: localhost
+
+- name: K3S - List all kubeconf
+  ansible.builtin.find:
+    paths: ~/.kube/configs/
+    pattern: ^.*.(yml|yaml)$
+    use_regex: true
+  delegate_to: localhost
+  register: all_kube_confgs
+
+- name: K3S - Update the local kubeconf
+  ansible.builtin.command: kubectl config view --flatten
+  environment:
+    KUBECONFIG: "{{ all_kube_confgs.files | map(attribute='path') | join(':') }}"
+  delegate_to: localhost
+  register: kubeconf
+  changed_when: false
+
+- name: K3S - Update kubeconf on local
+  ansible.builtin.copy:
+    content: "{{ kubeconf.stdout }}"
+    dest: ~/.kube/config
+    mode: "0600"
+  delegate_to: localhost

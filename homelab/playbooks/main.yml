@@ -3,6 +3,19 @@
   hosts:
     - lab
 
-  tasks:
+  pre_tasks:
     - name: Health - ping
       ansible.builtin.ping:
+
+  post_tasks:
+    - name: Kubectl - Switch current context
+      delegate_to: localhost
+      changed_when: false
+      ansible.builtin.command: kubectl config use-context homelab
+    - name: Kubectl - Get cluster status
+      delegate_to: localhost
+      changed_when: false
+      ansible.builtin.command: kubectl get nodes
+
+  roles:
+    - role: setup_k3s
