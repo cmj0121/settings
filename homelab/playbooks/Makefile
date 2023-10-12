@@ -5,7 +5,7 @@ HOMELAB := homelab
 all: 			# default action
 
 clean:			# clean-up environment
-	multipass delete $(MACHINE) --purge
+	multipass delete $(HOMELAB) --purge
 
 test:			# run test
 
