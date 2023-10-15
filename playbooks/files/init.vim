@@ -95,6 +95,7 @@ Plug 'scrooloose/nerdtree'
 " =====================
 Plug 'hashivim/vim-terraform'
 Plug 'dart-lang/dart-vim-plugin'
+Plug 'Glench/Vim-Jinja2-Syntax'
 call plug#end()
 
 let g:copilot_filetypes = {
