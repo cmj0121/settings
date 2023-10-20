@@ -1,29 +1,23 @@
-SUBDIR = infra modules
-
 .PHONY: all clean test plan apply destroy help
 
 all: 			# default action
+	terragrunt init
 
 clean:			# clean-up environment
 
 test:			# run test
 
 plan:			# plan the environment without applying
+	terragrunt plan
 
 apply:			# apply the environment without asking
+	terragrunt apply -auto-approve
 
 destroy:		# destroy the environment
+	terragrunt destroy
 
 help:			# show this message
 	@printf "Usage: make [OPTION]\n"
 	@printf "\n"
 	@perl -nle 'print $$& if m{^[\w-]+:.*?#.*$$}' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?#"} {printf "    %-18s %s\n", $$1, $$2}'
-
-plan apply destroy: $(SUBDIR)
-
-.PHONY: modules infra
-modules: infra
-
-$(SUBDIR):
-	$(MAKE) -C $@ $(MAKECMDGOALS)
