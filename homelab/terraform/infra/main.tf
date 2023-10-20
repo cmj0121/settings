@@ -1,3 +1,3 @@
-output "message" {
-  value = "Hello, infra!"
+module "security" {
+  source = "./security"
 }

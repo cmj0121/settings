@@ -19,3 +19,21 @@ remote_state {
     if_exists = "overwrite"
   }
 }
+
+generate "provider" {
+  path      = "provider.tf"
+  if_exists = "overwrite"
+
+  contents = <<EOT
+provider "kubernetes" {
+  config_path    = "${local.config_path}"
+  config_context = "${local.config_context}"
+}
+
+provider "helm" {
+  kubernetes {
+    config_path = "${local.config_path}"
+  }
+}
+EOT
+}

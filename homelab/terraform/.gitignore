@@ -5,3 +5,4 @@
 .terragrunt-cache/
 
 backend.tf
+provider.tf
