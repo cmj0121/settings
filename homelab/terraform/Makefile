@@ -1,6 +1,6 @@
 SUBDIR = infra modules
 
-.PHONY: all clean test plan apply destroy help
+.PHONY: all clean test plan apply output destroy help
 
 all: 			# default action
 
@@ -20,7 +20,7 @@ help:			# show this message
 	@perl -nle 'print $$& if m{^[\w-]+:.*?#.*$$}' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?#"} {printf "    %-18s %s\n", $$1, $$2}'
 
-plan apply destroy: $(SUBDIR)
+plan apply output destroy: $(SUBDIR)
 
 .PHONY: modules infra
 modules: infra

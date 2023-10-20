@@ -1,4 +1,4 @@
-.PHONY: all clean test plan apply destroy help
+.PHONY: all clean test plan apply output destroy help
 
 all: 			# default action
 	terragrunt init
@@ -12,6 +12,9 @@ plan:			# plan the environment without applying
 
 apply:			# apply the environment without asking
 	terragrunt apply -auto-approve
+
+output:			# show the output
+	terragrunt output -json
 
 destroy:		# destroy the environment
 	terragrunt destroy

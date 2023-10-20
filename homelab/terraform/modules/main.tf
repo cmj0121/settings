@@ -1,3 +1,4 @@
-output "message" {
-  value = "Hello, modules!"
+module "monitoring" {
+  source   = "./monitoring"
+  hostname = var.hostname
 }
