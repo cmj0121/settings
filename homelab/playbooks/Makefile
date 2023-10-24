@@ -1,21 +1,19 @@
 HOMELAB := homelab
 
-.PHONY: all clean test run build upgrade help
+.PHONY: all clean test run build destroy upgrade help
 
 all: 			# default action
 
 clean:			# clean-up environment
-	multipass delete $(HOMELAB) --purge
 
 test:			# run test
 
 run:			# run in the local environment
-	ansible-playbook -i inventory.ini main.yml
 
-build:			# build the local homelab machine
-	multipass launch --name $(HOMELAB) --mem 8G --disk 4G --cpus 4
-	cat "$(HOME)/.ssh/id_ed25519.pub" | multipass exec "$(HOMELAB)" -- bash -c "cat >> ~/.ssh/authorized_keys"
-	multipass info $(HOMELAB)
+build: apply	# build the local homelab machine
+
+destroy:		# destroy the environment
+	multipass delete $(HOMELAB) --purge
 
 upgrade:		# upgrade all the necessary packages
 
@@ -24,3 +22,15 @@ help:			# show this message
 	@printf "\n"
 	@perl -nle 'print $$& if m{^[\w-]+:.*?#.*$$}' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?#"} {printf "    %-18s %s\n", $$1, $$2}'
+
+launch:
+	@if ! multipass info homelab >/dev/null; then \
+		multipass launch --name $(HOMELAB) --memory 8G --disk 20G --cpus 4; \
+	fi
+	cat "$(HOME)/.ssh/id_ed25519.pub" | multipass exec "$(HOMELAB)" -- bash -c "cat >> ~/.ssh/authorized_keys"
+	multipass info $(HOMELAB)
+
+apply: launch
+	ansible-playbook main.yml \
+		-e ansible_user=ubuntu \
+		-i "$(shell multipass info $(HOMELAB) --format json | jq .info.homelab.ipv4[0] -r),"

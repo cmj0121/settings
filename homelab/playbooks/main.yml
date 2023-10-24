@@ -1,7 +1,6 @@
 ---
 - name: Set up HomeLab
-  hosts:
-    - lab
+  hosts: all
 
   pre_tasks:
     - name: Health - ping

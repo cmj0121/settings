@@ -1,6 +1,6 @@
 SUBDIR = infra modules
 
-.PHONY: all clean test plan apply output destroy help
+.PHONY: all clean test plan output build destroy help
 
 all: 			# default action
 
@@ -10,7 +10,7 @@ test:			# run test
 
 plan:			# plan the environment without applying
 
-apply:			# apply the environment without asking
+build:			# apply the environment without asking
 
 destroy:		# destroy the environment
 
@@ -20,7 +20,7 @@ help:			# show this message
 	@perl -nle 'print $$& if m{^[\w-]+:.*?#.*$$}' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?#"} {printf "    %-18s %s\n", $$1, $$2}'
 
-plan apply output destroy: $(SUBDIR)
+plan build output destroy: $(SUBDIR)
 
 .PHONY: modules infra
 modules: infra

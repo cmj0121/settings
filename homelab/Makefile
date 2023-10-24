@@ -1,6 +1,6 @@
-SUBDIR := playbooks
+SUBDIR := playbooks terraform
 
-.PHONY: all clean test run build upgrade help $(SUBDIR)
+.PHONY: all clean test run build destroy upgrade help
 
 all: 			# default action
 
@@ -20,6 +20,9 @@ help:			# show this message
 	@perl -nle 'print $$& if m{^[\w-]+:.*?#.*$$}' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?#"} {printf "    %-18s %s\n", $$1, $$2}'
 
-all clean test run build: $(SUBDIR)
 $(SUBDIR):
 	$(MAKE) -C $@ $(MAKECMDGOALS)
+
+.PHONY: playbooks terraform
+terraform: playbooks
+all clean test run build destroy: $(SUBDIR)
