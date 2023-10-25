@@ -42,4 +42,6 @@ resource "helm_release" "gateway" {
   namespace  = local.namespace
 
   depends_on = [kubernetes_namespace.istio-system]
+
+  values = ["${file("istio/gateway_values.yml")}"]
 }

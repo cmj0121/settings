@@ -1,0 +1,24 @@
+---
+persistence:
+  enabled: false
+
+postgresql-ha:
+  enabled: false
+
+service:
+  ssh:
+    port: 2222
+
+gitea:
+  config:
+    database:
+      DB_TYPE: sqlite3
+      HOST: example.com
+      PORT: 80
+
+    server:
+      SSH_PORT: 2222
+
+  additionalConfigSources:
+    - configMap:
+        name: gitea-config-app-ini

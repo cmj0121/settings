@@ -1,14 +1,14 @@
-resource "kubernetes_manifest" "grafana-vs" {
+resource "kubernetes_manifest" "gitea-vs" {
   manifest = {
-    apiVersion = "networking.istio.io/v1alpha3"
+    apiVersion = "networking.istio.io/v1beta1"
     kind       = "VirtualService"
 
     metadata = {
-      name      = "grafana-vs"
+      name      = "${local.name}-vs"
       namespace = var.namespace
 
       labels = {
-        app     = "grafana"
+        app     = "${local.name}"
         service = "http"
       }
     }
@@ -29,9 +29,9 @@ resource "kubernetes_manifest" "grafana-vs" {
               destination = {
                 # Destination indicates the network addressable service to which the
                 # request/connection will be sent after processing a routing rule.
-                host = "${local.name}"
+                host = "${local.name}-http"
                 port = {
-                  number = 80
+                  number = 3000
                 }
               }
             }
