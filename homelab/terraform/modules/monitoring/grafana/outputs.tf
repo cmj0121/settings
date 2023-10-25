@@ -1,6 +1,6 @@
 output "hostname" {
   description = "The service name of the Grafana instance"
-  value       = "${local.name}.${var.hostname}"
+  value       = "${local.name}.${var.namespace}.${var.hostname}"
 }
 
 output "admin_username" {
