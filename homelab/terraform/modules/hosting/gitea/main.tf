@@ -12,10 +12,7 @@ resource "helm_release" "gitea" {
   version    = local.version
   namespace  = var.namespace
 
-  set {
-    name  = "persistence.enabled"
-    value = false
-  }
+  values = ["${file("hosting/gitea/values.yml")}"]
 
   set {
     name  = "gitea.admin.username"
@@ -25,26 +22,6 @@ resource "helm_release" "gitea" {
   set {
     name  = "gitea.admin.password"
     value = random_password.password.result
-  }
-
-  set {
-    name  = "postgresql-ha.enabled"
-    value = false
-  }
-
-  set {
-    name  = "gitea.config.database.DB_TYPE"
-    value = "sqlite3"
-  }
-
-  set {
-    name  = "gitea.config.database.HOST"
-    value = "example.com:80"
-  }
-
-  set {
-    name  = "gitea.additionalConfigSources[0].configMap.name"
-    value = kubernetes_config_map.gitea-config-app-ini.metadata.0.name
   }
 }
 

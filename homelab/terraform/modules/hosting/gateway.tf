@@ -1,6 +1,6 @@
 resource "kubernetes_manifest" "hosting-gw" {
   manifest = {
-    apiVersion = "networking.istio.io/v1alpha3"
+    apiVersion = "networking.istio.io/v1beta1"
     kind       = "Gateway"
 
     metadata = {
@@ -8,8 +8,7 @@ resource "kubernetes_manifest" "hosting-gw" {
       namespace = local.namespace
 
       labels = {
-        app     = local.namespace
-        service = "http"
+        app = local.namespace
       }
     }
 
