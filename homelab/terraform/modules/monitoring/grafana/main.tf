@@ -1,6 +1,8 @@
 locals {
   name    = "grafana"
   version = "6.60.4"
+
+  admin_username = "grafana-admin"
 }
 
 resource "helm_release" "grafana" {
@@ -18,6 +20,11 @@ resource "helm_release" "grafana" {
   set {
     name  = "ingress.hosts[0]"
     value = "${local.name}.${var.hostname}"
+  }
+
+  set {
+    name  = "adminUser"
+    value = local.admin_username
   }
 
   set {
