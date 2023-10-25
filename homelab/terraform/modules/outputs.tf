@@ -4,6 +4,11 @@ output "grafana_admin_password" {
   sensitive   = true
 }
 
+output "gitea_hostname" {
+  description = "The hostname of the Gitea instance"
+  value       = module.hosting.gitea_hostname
+}
+
 output "gitea_admin_password" {
   description = "The hostname of the Gitea instance"
   value       = module.hosting.gitea_admin_password

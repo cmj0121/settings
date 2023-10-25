@@ -1,6 +1,6 @@
-output "service_hostname" {
+output "hostname" {
   description = "The service name of the Gitea service."
-  value       = local.name
+  value       = "${local.name}.${var.namespace}.${var.hostname}"
 }
 
 output "admin_password" {
