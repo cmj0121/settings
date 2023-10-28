@@ -13,7 +13,6 @@ resource "helm_release" "argocd" {
   values = [
     templatefile("${path.module}/values.yml", {
       admin_password = bcrypt(random_password.password.result, 10),
-      now            = timestamp()
     })
   ]
 }

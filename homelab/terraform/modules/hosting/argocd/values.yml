@@ -11,4 +11,3 @@ configs:
   secret:
     # Argo expects the password in the secret to be bcrypt hashed.
     argocdServerAdminPassword: ${ admin_password }
-    argocdServerAdminPasswordMtime: ${ now }
