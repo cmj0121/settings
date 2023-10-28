@@ -12,7 +12,7 @@ resource "helm_release" "argocd" {
 
   values = [
     templatefile("${path.module}/values.yml", {
-      admin_password = bcrypt(random_password.password.result, 10),
+      admin_password = null_resource.encrypt_password.triggers.password
     })
   ]
 }
@@ -21,4 +21,14 @@ resource "random_password" "password" {
   length           = 16
   special          = true
   override_special = "!#"
+}
+
+resource "null_resource" "encrypt_password" {
+  triggers = {
+    password = bcrypt(random_password.password.result, 10)
+  }
+
+  lifecycle {
+    ignore_changes = [triggers]
+  }
 }
