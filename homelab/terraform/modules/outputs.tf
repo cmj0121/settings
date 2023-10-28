@@ -29,3 +29,14 @@ output "gitea_admin_password" {
   value       = module.hosting.gitea_admin_password
   sensitive   = true
 }
+
+output "argocd_hostname" {
+  description = "The hostname of the ArgoCD instance"
+  value       = module.hosting.argocd_hostname
+}
+
+output "argocd_admin_password" {
+  description = "The admin password for the ArgoCD instance"
+  value       = module.hosting.argocd_admin_password
+  sensitive   = true
+}
