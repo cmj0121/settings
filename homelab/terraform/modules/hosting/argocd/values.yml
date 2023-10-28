@@ -1,0 +1,14 @@
+---
+global:
+  additionalLabels:
+    app: argo-cd
+
+configs:
+  params:
+    # make the UI accessable via HTTP
+    server.insecure: true
+
+  secret:
+    # Argo expects the password in the secret to be bcrypt hashed.
+    argocdServerAdminPassword: ${ admin_password }
+    argocdServerAdminPasswordMtime: ${ now }

@@ -13,3 +13,9 @@ module "gitea" {
   hostname  = var.hostname
   namespace = local.namespace
 }
+
+module "argocd" {
+  source    = "./argocd"
+  hostname  = var.hostname
+  namespace = local.namespace
+}
