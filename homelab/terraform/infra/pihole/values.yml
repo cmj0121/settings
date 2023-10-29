@@ -1,0 +1,4 @@
+---
+virtualHost: pihole.${ hostname }
+
+adminPassword: ${ password }
