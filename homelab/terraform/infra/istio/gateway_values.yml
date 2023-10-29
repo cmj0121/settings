@@ -18,3 +18,7 @@ service:
       port: 2222
       protocol: TCP
       targetPort: 2222
+    - name: dns
+      port: 53
+      protocol: TCP
+      targetPort: 53

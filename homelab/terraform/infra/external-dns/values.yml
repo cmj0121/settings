@@ -1,0 +1,20 @@
+---
+provider: pihole
+
+registry: noop
+
+env:
+  - name: EXTERNAL_DNS_PIHOLE_SERVER
+    value: http://${ pihole_service_name }
+  - name: EXTERNAL_DNS_PIHOLE_PASSWORD
+    value: ${ pihole_admin_password }
+  - name: EXTERNAL_DNS_PIHOLE_TLS_SKIP_VERIFY
+    value: "false"
+
+sources:
+  - service
+  - ingress
+  - istio-virtualservice
+
+domain-filter:
+  - ${ hostname }
