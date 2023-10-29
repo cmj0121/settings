@@ -3,3 +3,8 @@ output "admin_password" {
   value       = random_password.password.result
   sensitive   = true
 }
+
+output "service_name" {
+  description = "The name of the Pi-hole service"
+  value       = "${local.name}-web.${local.namespace}.svc.cluster.local"
+}

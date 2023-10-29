@@ -23,6 +23,8 @@ resource "helm_release" "external-dns" {
   depends_on = [kubernetes_namespace.external-dns]
 
   values = [templatefile("${path.module}/values.yml", {
-    hostname = var.hostname,
+    hostname              = var.hostname,
+    pihole_service_name   = var.pihole_service_name,
+    pihole_admin_password = var.pihole_admin_password,
   })]
 }

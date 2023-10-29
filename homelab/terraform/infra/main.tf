@@ -12,6 +12,8 @@ module "pihole" {
 }
 
 module "external-dns" {
-  source   = "./external-dns"
-  hostname = var.hostname
+  source                = "./external-dns"
+  hostname              = var.hostname
+  pihole_service_name   = module.pihole.service_name
+  pihole_admin_password = module.pihole.admin_password
 }
