@@ -21,6 +21,7 @@ resource "helm_release" "external-dns" {
   namespace = local.namespace
 
   depends_on = [kubernetes_namespace.external-dns]
+  timeout    = 600
 
   values = [templatefile("${path.module}/values.yml", {
     hostname              = var.hostname,
