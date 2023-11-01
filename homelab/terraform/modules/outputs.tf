@@ -40,3 +40,9 @@ output "argocd_admin_password" {
   value       = module.hosting.argocd_admin_password
   sensitive   = true
 }
+
+output "pihole_admin_password" {
+  description = "The admin password for the Pi-hole web interface"
+  value       = module.networking.pihole_admin_password
+  sensitive   = true
+}
