@@ -25,4 +25,5 @@ $(SUBDIR):
 
 .PHONY: playbooks terraform
 terraform: playbooks
-all clean test run build destroy: $(SUBDIR)
+destroy: playbooks
+all clean test run build: $(SUBDIR)
