@@ -19,8 +19,16 @@ provider "gitea" {
   password = var.gitea_admin_password
 }
 
+resource "kubernetes_namespace" "plugins" {
+  metadata {
+    name = local.namespace
+  }
+}
+
 module "drone" {
   source    = "./drone"
   hostname  = var.hostname
   namespace = local.namespace
+
+  gitea_hostname = var.gitea_hostname
 }
