@@ -12,9 +12,15 @@ terraform {
 }
 
 provider "gitea" {
-  base_url = var.gitea_hostname
+  base_url = "http://${var.gitea_hostname}"
 
   # Username/Password authentication is mutally exclusive with token authentication
   username = var.gitea_admin_username
   password = var.gitea_admin_password
+}
+
+module "drone" {
+  source    = "./drone"
+  hostname  = var.hostname
+  namespace = local.namespace
 }

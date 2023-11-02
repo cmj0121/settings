@@ -1,3 +1,8 @@
+variable "hostname" {
+  description = "The base hostname to use for the ingress"
+  type        = string
+}
+
 variable "gitea_hostname" {
   description = "The hostname of the Gitea instance"
   type        = string
