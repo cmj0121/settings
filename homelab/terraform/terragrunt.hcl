@@ -5,6 +5,9 @@ locals {
   suffix = "${path_relative_to_include() == "." ? "default" : path_relative_to_include()}"
 }
 
+inputs = {
+  hostname = "home.lab"
+}
 
 remote_state {
   backend = "kubernetes"

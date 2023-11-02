@@ -6,13 +6,11 @@ locals {
 }
 
 resource "helm_release" "gitea" {
-  name       = local.name
-  repository = "https://dl.gitea.com/charts/"
-  chart      = "gitea"
-  version    = local.version
-  namespace  = var.namespace
+  name      = local.name
+  chart     = "https://dl.gitea.com/charts/${local.name}-${local.version}.tgz"
+  namespace = var.namespace
 
-  values = ["${file("hosting/gitea/values.yml")}"]
+  values = ["${file("${path.module}/values.yml")}"]
 
   set {
     name  = "gitea.admin.username"

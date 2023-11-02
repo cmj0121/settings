@@ -1,5 +1,5 @@
 locals {
-  namespace = "hosting"
+  namespace = "services"
 }
 
 resource "kubernetes_namespace" "monitoring" {
