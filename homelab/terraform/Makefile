@@ -1,4 +1,4 @@
-SUBDIR = infra modules services
+SUBDIR = infra modules
 
 .PHONY: all clean test plan output build destroy help $(SUBDIR)
 
@@ -13,10 +13,8 @@ plan:			# plan the environment without applying
 build:			# apply the environment without asking
 	$(MAKE) -C infra $(MAKECMDGOALS)
 	$(MAKE) -C modules $(MAKECMDGOALS)
-	$(MAKE) -C services $(MAKECMDGOALS)
 
 destroy:		# destroy the environment
-	$(MAKE) -C services $(MAKECMDGOALS)
 	$(MAKE) -C modules $(MAKECMDGOALS)
 	$(MAKE) -C infra $(MAKECMDGOALS)
 
@@ -26,7 +24,7 @@ help:			# show this message
 	@perl -nle 'print $$& if m{^[\w-]+:.*?#.*$$}' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?#"} {printf "    %-18s %s\n", $$1, $$2}'
 
-plan output: $(SUBDIR)
+all clean plan output: $(SUBDIR)
 
 $(SUBDIR):
 	$(MAKE) -C $@ $(MAKECMDGOALS)
