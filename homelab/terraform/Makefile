@@ -1,6 +1,6 @@
 SUBDIR = infra modules plugins
 
-.PHONY: all clean test plan output build destroy help $(SUBDIR)
+.PHONY: all clean test plan output output-json build destroy help $(SUBDIR)
 
 all: 			# default action
 
@@ -26,7 +26,7 @@ help:			# show this message
 	@perl -nle 'print $$& if m{^[\w-]+:.*?#.*$$}' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?#"} {printf "    %-18s %s\n", $$1, $$2}'
 
-all clean plan output: $(SUBDIR)
+all clean plan output output-json: $(SUBDIR)
 
 $(SUBDIR):
 	$(MAKE) -C $@ $(MAKECMDGOALS)

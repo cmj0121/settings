@@ -1,6 +1,6 @@
 ENV := .env
 
-.PHONY: all clean test plan build output destroy help $(ENV)
+.PHONY: all clean test plan build output output-json destroy help $(ENV)
 
 all: 			# default action
 	terragrunt init -upgrade -reconfigure
@@ -18,6 +18,10 @@ build:			# apply the environment without asking
 	@$(shell cat $(ENV) | xargs) terragrunt apply -auto-approve
 
 output:			# show the output
+	@echo terragrunt output
+	@$(shell cat $(ENV) | xargs) terragrunt output
+
+output-json:	# show the output with JSON format
 	@echo terragrunt output -json
 	@$(shell cat $(ENV) | xargs) terragrunt output -json
 
@@ -33,4 +37,4 @@ help:			# show this message
 
 plan build output destroy: $(ENV)
 $(ENV):
-	@$(MAKE) -C ../modules/services/ output | tail -n +2 | jq -r 'to_entries[] | "TF_VAR_\(.key)=\(.value.value)"' > $@
+	@$(MAKE) -C ../modules/services/ output-json | tail -n +2 | jq -r 'to_entries[] | "TF_VAR_\(.key)=\(.value.value)"' > $@

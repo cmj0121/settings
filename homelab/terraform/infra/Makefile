@@ -1,4 +1,4 @@
-.PHONY: all clean test plan build output destroy help
+.PHONY: all clean test plan build output output-json destroy help
 
 all: 			# default action
 	terragrunt init
@@ -14,6 +14,9 @@ build:			# apply the environment without asking
 	terragrunt apply -auto-approve
 
 output:			# show the output
+	terragrunt output
+
+output-json:	# show the output with JSON format
 	terragrunt output -json
 
 destroy:		# destroy the environment
