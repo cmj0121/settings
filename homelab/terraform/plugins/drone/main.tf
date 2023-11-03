@@ -49,11 +49,11 @@ resource "helm_release" "drone-secret" {
 resource "random_password" "rpc_secret" {
   length           = 16
   special          = true
-  override_special = "!#$"
+  override_special = "!#"
 }
 
 resource "random_password" "plugin_token" {
   length           = 16
   special          = true
-  override_special = "!#$"
+  override_special = "!#"
 }

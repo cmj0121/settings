@@ -8,6 +8,11 @@ variable "gitea_hostname" {
   type        = string
 }
 
+variable "gitea_service_name" {
+  description = "The service name of the Gitea instance"
+  type        = string
+}
+
 variable "gitea_admin_username" {
   description = "The username of the Gitea admin user"
   type        = string

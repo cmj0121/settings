@@ -22,6 +22,11 @@ provider "gitea" {
 resource "kubernetes_namespace" "plugins" {
   metadata {
     name = local.namespace
+
+    labels = {
+      # inject istio sidecar
+      istio-injection = "enabled"
+    }
   }
 }
 
@@ -30,5 +35,6 @@ module "drone" {
   hostname  = var.hostname
   namespace = local.namespace
 
-  gitea_hostname = var.gitea_hostname
+  gitea_hostname     = var.gitea_hostname
+  gitea_service_name = var.gitea_service_name
 }

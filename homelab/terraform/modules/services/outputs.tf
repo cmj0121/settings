@@ -3,6 +3,11 @@ output "gitea_hostname" {
   value       = module.gitea.hostname
 }
 
+output "gitea_service_name" {
+  description = "The service name of the Gitea instance"
+  value       = module.gitea.servicename
+}
+
 output "gitea_admin_username" {
   description = "The username of the Gitea instance"
   value       = module.gitea.admin_username
