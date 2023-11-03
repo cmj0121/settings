@@ -29,3 +29,13 @@ output "argocd_admin_password" {
   value       = module.argocd.admin_password
   sensitive   = true
 }
+
+output "registry_hostname" {
+  description = "The hostname of the Registry instance"
+  value       = module.registry.hostname
+}
+
+output "registry_service_name" {
+  description = "The service name of the Registry instance"
+  value       = module.registry.servicename
+}

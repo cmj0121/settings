@@ -24,3 +24,9 @@ module "argocd" {
   hostname  = var.hostname
   namespace = local.namespace
 }
+
+module "registry" {
+  source    = "./registry"
+  hostname  = var.hostname
+  namespace = local.namespace
+}
