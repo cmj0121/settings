@@ -12,7 +12,7 @@ inputs = {
 remote_state {
   backend = "kubernetes"
   config = {
-    secret_suffix  = "state-${local.suffix}"
+    secret_suffix  = "state-${replace("${local.suffix}", "/", "-")}"
     config_path    = local.config_path
     config_context = local.config_context
   }

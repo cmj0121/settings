@@ -3,6 +3,11 @@ output "hostname" {
   value       = "${local.name}.${var.namespace}.${var.hostname}"
 }
 
+output "servicename" {
+  description = "The service name of the Gitea service."
+  value       = "${local.name}-http.${var.namespace}"
+}
+
 output "admin_username" {
   description = "The admin username for the Gitea instance"
   value       = local.admin_username

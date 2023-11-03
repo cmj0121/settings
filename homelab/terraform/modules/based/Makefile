@@ -1,7 +1,7 @@
 .PHONY: all clean test plan build output destroy help
 
 all: 			# default action
-	terragrunt init -upgrade
+	terragrunt init -upgrade -reconfigure
 
 clean:			# clean-up environment
 

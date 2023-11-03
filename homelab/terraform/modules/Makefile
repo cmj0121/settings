@@ -1,26 +1,30 @@
-.PHONY: all clean test plan build output destroy help
+SUBDIR = based services
+
+.PHONY: all clean test plan output build destroy help $(SUBDIR)
 
 all: 			# default action
-	terragrunt init -upgrade
 
 clean:			# clean-up environment
 
 test:			# run test
 
 plan:			# plan the environment without applying
-	terragrunt plan
 
 build:			# apply the environment without asking
-	terragrunt apply -auto-approve
-
-output:			# show the output
-	terragrunt output -json
+	$(MAKE) -C based $(MAKECMDGOALS)
+	$(MAKE) -C services $(MAKECMDGOALS)
 
 destroy:		# destroy the environment
-	terragrunt destroy
+	$(MAKE) -C services $(MAKECMDGOALS)
+	$(MAKE) -C based $(MAKECMDGOALS)
 
 help:			# show this message
 	@printf "Usage: make [OPTION]\n"
 	@printf "\n"
 	@perl -nle 'print $$& if m{^[\w-]+:.*?#.*$$}' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?#"} {printf "    %-18s %s\n", $$1, $$2}'
+
+all clean plan output: $(SUBDIR)
+
+$(SUBDIR):
+	$(MAKE) -C $@ $(MAKECMDGOALS)

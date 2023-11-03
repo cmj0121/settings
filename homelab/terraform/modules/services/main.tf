@@ -5,6 +5,11 @@ locals {
 resource "kubernetes_namespace" "monitoring" {
   metadata {
     name = local.namespace
+
+    labels = {
+      # inject istio sidecar
+      istio-injection = "enabled"
+    }
   }
 }
 
