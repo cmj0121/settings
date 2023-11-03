@@ -1,0 +1,19 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: registry-hostname-alias
+  namespace: ${ namespace }
+spec:
+  hosts:
+    - ${ registry_hostname }
+  endpoints:
+    - address: ${ registry_service_name }
+      ports:
+        http: ${ registry_service_port }
+  location: MESH_INTERNAL
+  resolution: DNS
+  ports:
+    - number: 80
+      name: http
+      protocol: HTTP

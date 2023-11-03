@@ -23,3 +23,19 @@ variable "gitea_service_port" {
   type        = string
   default     = 3000
 }
+
+variable "registry_hostname" {
+  description = "The hostname of the Registry instance"
+  type        = string
+}
+
+variable "registry_service_name" {
+  description = "The service name of the Registry instance"
+  type        = string
+}
+
+variable "registry_service_port" {
+  description = "The service port of the Registry instance"
+  type        = string
+  default     = 80
+}

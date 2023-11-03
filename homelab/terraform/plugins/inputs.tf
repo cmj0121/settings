@@ -23,3 +23,13 @@ variable "gitea_admin_password" {
   type        = string
   sensitive   = true
 }
+
+variable "registry_hostname" {
+  description = "The hostname of the Registry instance"
+  type        = string
+}
+
+variable "registry_service_name" {
+  description = "The service name of the Registry instance"
+  type        = string
+}

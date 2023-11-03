@@ -37,4 +37,7 @@ module "drone" {
 
   gitea_hostname     = var.gitea_hostname
   gitea_service_name = var.gitea_service_name
+
+  registry_hostname     = var.registry_hostname
+  registry_service_name = var.registry_service_name
 }

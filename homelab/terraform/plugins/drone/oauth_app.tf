@@ -24,3 +24,13 @@ resource "kubernetes_manifest" "gitea-service-entry" {
     gitea_service_port = var.gitea_service_port
   }))
 }
+
+resource "kubernetes_manifest" "registry-service-entry" {
+  manifest = yamldecode(templatefile("${path.module}/values/registry-service-entry.yml", {
+    namespace = var.namespace
+
+    registry_hostname     = var.registry_hostname
+    registry_service_name = var.registry_service_name
+    registry_service_port = var.registry_service_port
+  }))
+}
