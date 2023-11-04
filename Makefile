@@ -26,7 +26,10 @@ help:				# show this message
 
 all clean install install-tags: $(SUBDIR)
 
+$(SUBDIR):
+	$(MAKE) -C $@ $(MAKECMDGOALS)
+
 .PHONY: bootstrap
-install install-tags: bootstrap
+install install-tags $(SUBDIR): bootstrap
 bootstrap:
 	./$@
