@@ -1,11 +1,16 @@
 ---
 - name: Settings - install the DEV environment
+  gather_facts: yes
   hosts:
     - homebrew
 
-  tasks:
+  pre_tasks:
     - name: Health - ping
       ansible.builtin.ping:
+    - name: Distribution
+      debug: msg={{ ansible_distribution }}
+
+  tasks:
     - name: Homebrew - install basic dependency
       community.general.homebrew:
         state: present

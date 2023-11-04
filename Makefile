@@ -1,4 +1,6 @@
-.PHONY: all clean test install install-tag upgrade help
+SUBDIR := playbooks
+
+.PHONY: all clean test install install-tag upgrade help $(SUBDIR)
 
 all: 		 		# default action
 	@[ -f .git/hooks/pre-commit ] || pre-commit install --install-hooks
@@ -10,12 +12,8 @@ clean: 				# clean-up environment
 test:				# run all tests
 
 install:			# install the local DEV environment
-	@./bootstrap
-	@ansible-galaxy collection install community.general
-	ansible-playbook -i playbooks/inventory.ini playbooks/main.yml
 
 install-tag:		# install the package with tags
-	ansible-playbook -i playbooks/inventory.ini playbooks/main.yml --tags $(TAG)
 
 upgrade:			# upgrade all the necessary packages
 	pre-commit autoupdate
@@ -25,3 +23,10 @@ help:				# show this message
 	@printf "\n"
 	@perl -nle 'print $$& if m{^[\w-]+:.*?#.*$$}' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?#"} {printf "    %-18s %s\n", $$1, $$2}'
+
+all clean install install-tags: $(SUBDIR)
+
+.PHONY: bootstrap
+install install-tags: bootstrap
+bootstrap:
+	./$@
