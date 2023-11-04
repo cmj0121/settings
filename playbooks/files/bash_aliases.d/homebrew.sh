@@ -2,6 +2,10 @@
 #
 # The extra settings for Homebrew.
 
+if [ -d "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
 if ! command -v brew &>/dev/null; then
 	return
 fi
