@@ -26,3 +26,7 @@ service:
       port: 6379
       protocol: TCP
       targetPort: 6379
+    - name: postgresql
+      port: 5432
+      protocol: TCP
+      targetPort: 5432
