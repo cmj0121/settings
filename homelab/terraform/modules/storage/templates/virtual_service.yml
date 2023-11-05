@@ -9,9 +9,9 @@ metadata:
 
 spec:
   gateways:
-    - storage-gw
-  hosts:
     - ${ gateway }
+  hosts:
+    - ${ hostname }
   http:
     - route:
         - destination:
