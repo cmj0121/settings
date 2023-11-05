@@ -18,9 +18,3 @@ module "loki" {
   source    = "./loki"
   namespace = local.namespace
 }
-
-module "promtail" {
-  source            = "./promtail"
-  namespace         = local.namespace
-  loki_service_name = module.loki.service_name
-}

@@ -1,0 +1,15 @@
+---
+global:
+  storageClass: "${ storage_class_name }"
+
+admin:
+  user: "${ username }"
+  password: "${ password }"
+
+service:
+  ports:
+    grafana: 80
+
+persistence:
+  enabled: true
+  storageClassName: "${ storage_class_name }"

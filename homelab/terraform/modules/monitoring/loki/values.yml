@@ -1,12 +1,6 @@
 ---
-loki:
-  commonConfig:
-    replication_factor: 1
-  storage:
-    type: filesystem
+global:
+  storageClass: "${ storage_class_name }"
 
-  # make Loki without authentication
-  auth_enabled: false
-
-singleBinary:
-  replicas: 1
+promtail:
+  enabled: true
