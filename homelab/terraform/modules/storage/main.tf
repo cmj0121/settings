@@ -20,3 +20,9 @@ module "postgresql" {
   namespace = kubernetes_namespace.storage.metadata[0].name
   hostname  = var.hostname
 }
+
+module "mariadb" {
+  source    = "./mariadb"
+  namespace = kubernetes_namespace.storage.metadata[0].name
+  hostname  = var.hostname
+}

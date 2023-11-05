@@ -29,3 +29,19 @@ output "postgresql_admin_password" {
   value       = module.postgresql.admin_password
   sensitive   = true
 }
+
+output "mariadb_hostname" {
+  description = "The hostname of the PostgreSQL service"
+  value       = module.mariadb.hostname
+}
+
+output "mariadb_service_name" {
+  description = "The name of the PostgreSQL service name"
+  value       = module.mariadb.service_name
+}
+
+output "mariadb_admin_password" {
+  description = "The admin password of the PostgreSQL service"
+  value       = module.mariadb.admin_password
+  sensitive   = true
+}
