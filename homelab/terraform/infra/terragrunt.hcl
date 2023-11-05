@@ -3,7 +3,6 @@ include "parent" {
   expose = true
 }
 
-
 terraform {
   source = "main.tf"
 }
