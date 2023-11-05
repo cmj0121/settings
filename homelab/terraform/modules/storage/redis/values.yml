@@ -1,0 +1,11 @@
+auth:
+  enabled: true
+  password: "${ password }"
+
+master:
+  persistence:
+    enabled: false
+
+replica:
+  persistence:
+    enabled: false
