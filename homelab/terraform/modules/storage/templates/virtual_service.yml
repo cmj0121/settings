@@ -17,4 +17,4 @@ spec:
         - destination:
             host: ${ service_name }
             port:
-              number: 6379
+              number: ${ port }
