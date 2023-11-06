@@ -2,6 +2,8 @@ locals {
   name         = "pihole"
   helm_version = "2.18.0"
   namespace    = "pihole"
+
+  hostname = "${local.name}.${var.hostname}"
 }
 
 resource "kubernetes_namespace" "pihole" {
@@ -23,6 +25,8 @@ resource "helm_release" "pihole" {
   values = [templatefile("${path.module}/values.yml", {
     hostname = var.hostname,
     password = random_password.password.result,
+
+    storage_class_name = var.storage_class_name,
   })]
 }
 

@@ -1,6 +1,6 @@
 locals {
   name     = "drone"
-  hostname = "${local.name}.${var.namespace}.${var.hostname}"
+  hostname = "${local.name}.${var.hostname}"
 
   drone_ver       = "0.6.5"
   runner_ver      = "0.1.10"

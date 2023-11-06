@@ -1,4 +1,15 @@
 ---
 virtualHost: pihole.${ hostname }
 
+serviceDhcp:
+  enabled: false
+
+serviceDns:
+  mixedService: true
+  type: LoadBalancer
+
+persistentVolumeClaim:
+  enabled: true
+  storageClass: ${ storage_class_name }
+
 adminPassword: ${ password }
