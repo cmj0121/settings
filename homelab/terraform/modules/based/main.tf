@@ -1,6 +1,8 @@
 module "pihole" {
   source   = "./pihole"
   hostname = var.hostname
+
+  storage_class_name = var.storage_class_name
 }
 
 module "external-dns" {

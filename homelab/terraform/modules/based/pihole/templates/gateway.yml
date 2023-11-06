@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+
+metadata:
+  name: ${ name }
+  namespace: ${ namespace }
+
+  labels:
+    app: ${ name }
+    service: ${ service_name }
+spec:
+  selector:
+    istio: gateway
+  servers:
+    - hosts:
+        - "${ hostname }"
+      port:
+        name: ${ service_name }
+        number: ${ service_port }
+        protocol: ${ service_protocal }
