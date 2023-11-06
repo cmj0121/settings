@@ -26,7 +26,7 @@ resource "kubernetes_manifest" "plugins-gw" {
             protocol = "HTTP"
           }
 
-          hosts = ["*.${local.namespace}.${var.hostname}"]
+          hosts = ["*.${var.hostname}"]
         }
       ]
     }

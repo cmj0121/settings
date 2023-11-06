@@ -37,4 +37,4 @@ help:			# show this message
 
 plan build output destroy: $(ENV)
 $(ENV):
-	@$(MAKE) -C ../modules/services/ output-json | tail -n +2 | jq -r 'to_entries[] | "TF_VAR_\(.key)=\(.value.value)"' > $@
+	@$(MAKE) -C ../modules/hosting/ output-json | tail -n +2 | jq -r 'to_entries[] | "TF_VAR_\(.key)=\(.value.value)"' > $@
