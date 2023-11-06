@@ -10,9 +10,7 @@ resource "helm_release" "redis" {
   chart     = "https://charts.bitnami.com/bitnami/${local.name}-${local.version}.tgz"
   namespace = var.namespace
 
-  values = [templatefile("${path.module}/values.yml", {
-    password = random_password.password.result
-  })]
+  values = [templatefile("${path.module}/values.yml", {})]
 }
 
 resource "random_password" "password" {
