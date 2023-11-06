@@ -3,7 +3,7 @@ locals {
   image     = "registry"
   image_tag = "2.8.3"
   port      = 80
-  hostname  = "${local.name}.${var.namespace}.${var.hostname}"
+  hostname  = "${local.name}.${var.hostname}"
 }
 
 resource "kubernetes_manifest" "registry" {
@@ -22,14 +22,5 @@ resource "kubernetes_manifest" "registry-svc" {
     name      = local.name,
     namespace = var.namespace,
     port      = local.port,
-  }))
-}
-
-resource "kubernetes_manifest" "registry-vs" {
-  manifest = yamldecode(templatefile("${path.module}/values/virtual_service.yml", {
-    name      = local.name,
-    namespace = var.namespace,
-    port      = local.port,
-    hostname  = local.hostname,
   }))
 }
