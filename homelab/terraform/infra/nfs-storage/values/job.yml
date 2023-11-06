@@ -1,0 +1,30 @@
+---
+apiVersion: batch/v1
+kind: Job
+
+metadata:
+  name: test
+  namespace: ${ namespace }
+
+spec:
+  template:
+    metadata:
+      name: test
+
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: test
+          image: busybox:stable
+          command:
+            - "/bin/sh"
+          args:
+            - "-c"
+            - "touch /mnt/SUCCESS && exit 0 || exit 1"
+          volumeMounts:
+            - name: ${ pvc-name }
+              mountPath: "/mnt"
+      volumes:
+        - name: ${ pvc-name }
+          persistentVolumeClaim:
+            claimName: ${ pvc-claim }

@@ -3,6 +3,9 @@ include "parent" {
   expose = true
 }
 
+remote_state = include.parent.remote_state
+
+
 terraform {
   source = "main.tf"
 }

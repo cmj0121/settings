@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: ${ name }
+  namespace: ${ namespace }
+  labels:
+    app: ${ name }
+    service: redis
+
+spec:
+  gateways:
+    - ${ gateway }
+  hosts:
+    - ${ hostname }
+  http:
+    - route:
+        - destination:
+            host: ${ service_name }
+            port:
+              number: ${ port }

@@ -4,7 +4,8 @@ variable "namespace" {
   default     = "default"
 }
 
-variable "loki_service_name" {
-  description = "The k8s service name for loki"
+variable "storage_class_name" {
+  description = "The name of the storage class to use for the Redis PVC"
   type        = string
+  default     = "nfs-client"
 }

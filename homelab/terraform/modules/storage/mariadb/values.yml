@@ -1,0 +1,10 @@
+auth:
+  rootPassword: "${ password }"
+
+primary:
+  persistence:
+    storageClass: "${ storage_class_name }"
+
+secondary:
+  persistence:
+    storageClass: "${ storage_class_name }"
