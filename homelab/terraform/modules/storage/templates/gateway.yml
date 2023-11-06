@@ -16,6 +16,6 @@ spec:
     - hosts:
         - "*"
       port:
-        name: redis
-        number: 6379
+        name: ${ name }
+        number: ${ service_port }
         protocol: TCP

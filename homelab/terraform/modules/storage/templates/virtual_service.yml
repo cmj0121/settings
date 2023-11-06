@@ -11,10 +11,12 @@ spec:
   gateways:
     - ${ gateway }
   hosts:
-    - ${ hostname }
-  http:
-    - route:
+    - "*"
+  tcp:
+    - match:
+        - port: ${ service_port }
+      route:
         - destination:
             host: ${ service_name }
             port:
-              number: ${ port }
+              number: ${ service_port }

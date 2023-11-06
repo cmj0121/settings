@@ -1,7 +1,7 @@
 locals {
-  name         = "external-dns"
-  helm_version = "1.13.1"
-  namespace    = "external-dns"
+  name      = "external-dns"
+  version   = "1.13.1"
+  namespace = "external-dns"
 }
 
 resource "kubernetes_namespace" "external-dns" {
@@ -16,8 +16,8 @@ resource "helm_release" "external-dns" {
   # ============================================================
   # repository = "https://kubernetes-sigs.github.io/external-dns/"
   # chart      = local.name
-  # version    = local.helm_version
-  chart     = "https://github.com/kubernetes-sigs/external-dns/releases/download/external-dns-helm-chart-1.13.1/external-dns-1.13.1.tgz"
+  # version    = local.version
+  chart     = "https://github.com/kubernetes-sigs/external-dns/releases/download/external-dns-helm-chart-1.13.1/external-dns-${local.version}.tgz"
   namespace = local.namespace
 
   depends_on = [kubernetes_namespace.external-dns]

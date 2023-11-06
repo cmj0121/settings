@@ -8,12 +8,6 @@ output "redis_service_name" {
   value       = module.redis.service_name
 }
 
-output "redis_admin_password" {
-  description = "The admin password of the Redis service"
-  value       = module.redis.admin_password
-  sensitive   = true
-}
-
 output "postgresql_hostname" {
   description = "The hostname of the PostgreSQL service"
   value       = module.postgresql.hostname
