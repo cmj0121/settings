@@ -1,6 +1,8 @@
 locals {
   name    = "argocd"
   version = "5.47.0"
+
+  hostname = "${local.name}.${var.hostname}"
 }
 
 resource "helm_release" "argocd" {

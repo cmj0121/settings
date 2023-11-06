@@ -1,6 +1,6 @@
 output "hostname" {
   description = "The service name of the ArgoCD server"
-  value       = "${local.name}.${var.namespace}.${var.hostname}"
+  value       = local.hostname
 }
 
 output "admin_password" {

@@ -1,6 +1,10 @@
 ---
+global:
+  storageClass: ${ storage_class_name }
+
 persistence:
-  enabled: false
+  enabled: true
+  storageClass: ${ storage_class_name }
 
 postgresql-ha:
   enabled: false

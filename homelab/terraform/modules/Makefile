@@ -1,6 +1,6 @@
-SUBDIR = based services
+SUBDIR = based storage monitoring hosting
 
-.PHONY: all clean test plan output output-json build destroy help $(SUBDIR)
+.PHONY: all clean test plan output output-json build destroy help
 
 all: 			# default action
 
@@ -11,12 +11,11 @@ test:			# run test
 plan:			# plan the environment without applying
 
 build:			# apply the environment without asking
-	$(MAKE) -C based $(MAKECMDGOALS)
-	$(MAKE) -C services $(MAKECMDGOALS)
 
 destroy:		# destroy the environment
-	$(MAKE) -C services $(MAKECMDGOALS)
-	$(MAKE) -C based $(MAKECMDGOALS)
+	$(MAKE) -C monitoring $(MAKECMDGOALS)
+	$(MAKE) -C storage    $(MAKECMDGOALS)
+	$(MAKE) -C based      $(MAKECMDGOALS)
 
 help:			# show this message
 	@printf "Usage: make [OPTION]\n"
@@ -24,7 +23,11 @@ help:			# show this message
 	@perl -nle 'print $$& if m{^[\w-]+:.*?#.*$$}' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?#"} {printf "    %-18s %s\n", $$1, $$2}'
 
-all clean plan output output-json: $(SUBDIR)
+all clean build plan output output-json: $(SUBDIR)
 
 $(SUBDIR):
 	$(MAKE) -C $@ $(MAKECMDGOALS)
+
+.PHONY: based storage monitoring hosting
+storage: based
+monitoring hosting: storage

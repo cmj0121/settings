@@ -1,6 +1,6 @@
 output "hostname" {
   description = "The service name of the Gitea service."
-  value       = "${local.name}.${var.namespace}.${var.hostname}"
+  value       = local.hostname
 }
 
 output "servicename" {

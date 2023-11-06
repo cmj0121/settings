@@ -1,6 +1,7 @@
 locals {
-  name    = "gitea"
-  version = "9.5.1"
+  name     = "gitea"
+  version  = "9.5.1"
+  hostname = "${local.name}.${var.hostname}"
 
   admin_username = "gitea-admin"
 }
@@ -10,7 +11,9 @@ resource "helm_release" "gitea" {
   chart     = "https://dl.gitea.com/charts/${local.name}-${local.version}.tgz"
   namespace = var.namespace
 
-  values = ["${file("${path.module}/values.yml")}"]
+  values = [templatefile("${path.module}/values.yml", {
+    storage_class_name = var.storage_class_name,
+  })]
 
   set {
     name  = "gitea.admin.username"
@@ -31,9 +34,9 @@ resource "kubernetes_config_map" "gitea-config-app-ini" {
 
   data = {
     server = <<EOF
-      ROOT_URL   = http://${local.name}.${var.namespace}.${var.hostname}
-      DOMAIN     = ${local.name}.${var.namespace}.${var.hostname}
-      SSH_DOMAIN = ${local.name}.${var.namespace}.${var.hostname}
+      ROOT_URL   = http://${local.hostname}
+      DOMAIN     = ${local.hostname}
+      SSH_DOMAIN = ${local.hostname}
     EOF
   }
 }
