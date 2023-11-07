@@ -28,10 +28,7 @@ resource "helm_release" "istiod" {
 
   depends_on = [kubernetes_namespace.istio-system]
 
-  set {
-    name  = "meshConfig.accessLogFile"
-    value = "/dev/stdout"
-  }
+  values = ["${file("${path.module}/templates/istiod.yml")}"]
 }
 
 resource "helm_release" "gateway" {
@@ -44,4 +41,16 @@ resource "helm_release" "gateway" {
   depends_on = [kubernetes_namespace.istio-system]
 
   values = ["${file("istio/gateway_values.yml")}"]
+}
+
+resource "null_resource" "dns-proxy" {
+  provisioner "local-exec" {
+    command = "istioctl install -y -f ${path.module}/templates/dns-proxy.yml"
+  }
+
+  depends_on = [
+    helm_release.base,
+    helm_release.istiod,
+    helm_release.gateway,
+  ]
 }

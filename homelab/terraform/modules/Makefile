@@ -14,6 +14,7 @@ build:			# apply the environment without asking
 
 destroy:		# destroy the environment
 	$(MAKE) -C monitoring $(MAKECMDGOALS)
+	$(MAKE) -C hosting $(MAKECMDGOALS)
 	$(MAKE) -C storage    $(MAKECMDGOALS)
 	$(MAKE) -C based      $(MAKECMDGOALS)
 

@@ -1,3 +1,4 @@
+---
 env:
   DRONE_RPC_SECRET: ${ rpc_secret }
   DRONE_RPC_HOST: ${ drone_service }

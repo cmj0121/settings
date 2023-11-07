@@ -1,9 +1,4 @@
-podAnnotations:
-  proxy.istio.io/config: |
-    proxyMetadata:
-      ISTIO_META_DNS_CAPTURE: "true"
-      ISTIO_META_DNS_AUTO_ALLOCATE: "true"
-
+---
 env:
   DRONE_SERVER_HOST: ${ hostname }
   DRONE_SERVER_PROTO: http
