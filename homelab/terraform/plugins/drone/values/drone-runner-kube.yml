@@ -1,4 +1,9 @@
 env:
   DRONE_RPC_SECRET: ${ rpc_secret }
+  DRONE_RPC_HOST: ${ drone_service }
   DRONE_NAMESPACE_DEFAULT: ${ namespace }
   DRONE_SECRET_PLUGIN_TOKEN: ${ plugin_token }
+
+rbac:
+  buildNamespaces:
+    - ${ namespace }

@@ -28,9 +28,10 @@ resource "helm_release" "drone-runner-kube" {
   namespace = var.namespace
 
   values = [templatefile("${path.module}/values/drone-runner-kube.yml", {
-    rpc_secret   = random_password.rpc_secret.result,
-    namespace    = var.namespace,
-    plugin_token = random_password.plugin_token.result,
+    rpc_secret    = random_password.rpc_secret.result,
+    namespace     = var.namespace,
+    drone_service = "drone:8080"
+    plugin_token  = random_password.plugin_token.result,
   })]
 }
 
