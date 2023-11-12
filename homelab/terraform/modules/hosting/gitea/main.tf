@@ -38,6 +38,10 @@ resource "kubernetes_config_map" "gitea-config-app-ini" {
       DOMAIN     = ${local.hostname}
       SSH_DOMAIN = ${local.hostname}
     EOF
+
+    actions = <<EOF
+      ENABLED = true
+    EOF
   }
 }
 
