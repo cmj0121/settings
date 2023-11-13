@@ -14,3 +14,9 @@ variable "redis_port" {
   type        = number
   default     = 6379
 }
+
+variable "gitea_act_runner_tokens" {
+  description = "The set of tokens to create for the gitea action runner instance"
+  type        = list(string)
+  default     = []
+}

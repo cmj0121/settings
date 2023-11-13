@@ -33,3 +33,14 @@ module "registry" {
   hostname  = var.hostname
   namespace = kubernetes_namespace.hosting.metadata[0].name
 }
+
+module "gitea-action-runner" {
+  source                  = "./gitea-action-runner"
+  namespace               = kubernetes_namespace.hosting.metadata[0].name
+  gitea_service           = "http://${module.gitea.servicename}.svc.cluster.local:3000"
+  gitea_act_runner_tokens = var.gitea_act_runner_tokens
+
+  depends_on = [
+    module.gitea
+  ]
+}

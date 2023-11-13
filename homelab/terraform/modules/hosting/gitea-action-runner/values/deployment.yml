@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: ${ name }
+  namespace: ${ namespace }
+  labels:
+    app: ${ name }
+    app.kubernetes.io/instance: gitea-action-runner
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ${ name }
+      app.kubernetes.io/instance: gitea-action-runner
+  template:
+    metadata:
+      labels:
+        app: ${ name }
+        app.kubernetes.io/instance: gitea-action-runner
+    spec:
+      securityContext:
+        fsGroup: ${ uid }
+      containers:
+        - name: gitea-action-runner
+          image: ${ image }
+          imagePullPolicy: Always
+          env:
+            - name: DOCKER_HOST
+              value: unix:///run/user/${ uid }/docker.sock
+            - name: GITEA_INSTANCE_URL
+              value: ${ gitea_service }
+            - name: GITEA_RUNNER_REGISTRATION_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: ${ secret_name }
+                  key: token
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: runner-data
+              mountPath: /data
+      volumes:
+        - name: runner-data
+          persistentVolumeClaim:
+            claimName: ${ pvc_claim }
