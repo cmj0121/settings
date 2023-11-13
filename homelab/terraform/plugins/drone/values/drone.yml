@@ -1,9 +1,0 @@
----
-env:
-  DRONE_SERVER_HOST: ${ hostname }
-  DRONE_SERVER_PROTO: http
-  DRONE_RPC_SECRET: ${ rpc_secret }
-
-  DRONE_GITEA_CLIENT_ID: ${ gitea_client_id }
-  DRONE_GITEA_CLIENT_SECRET: ${ gitea_client_secret }
-  DRONE_GITEA_SERVER: ${ gitea_server }

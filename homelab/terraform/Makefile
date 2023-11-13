@@ -1,4 +1,4 @@
-SUBDIR = infra modules plugins
+SUBDIR = infra modules
 
 .PHONY: all clean test plan output output-json build destroy help $(SUBDIR)
 
@@ -13,10 +13,8 @@ plan:			# plan the environment without applying
 build:			# apply the environment without asking
 	$(MAKE) -C infra $(MAKECMDGOALS)
 	$(MAKE) -C modules $(MAKECMDGOALS)
-	$(MAKE) -C plugins $(MAKECMDGOALS)
 
 destroy:		# destroy the environment
-	$(MAKE) -C plugins $(MAKECMDGOALS)
 	$(MAKE) -C modules $(MAKECMDGOALS)
 	$(MAKE) -C infra $(MAKECMDGOALS)
 
