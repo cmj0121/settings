@@ -1,6 +1,4 @@
 #! /usr/bin/env bash
-export LC_ALL=C.UTF-8
-
 # some more ls aliases
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'

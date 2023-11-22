@@ -50,18 +50,16 @@ unset color_prompt
 
 [ "$PS1" ] && complete -cf sudo
 
-## ========= Homebrew definitions ========= ##
-[ -d /opt/homebrew/bin/ ] && export PATH="/opt/homebrew/bin/:$PATH"
-
 ## ========= Alias definitions ========= ##
-# shellcheck disable=SC1091
-[ -f /etc/bash_completion ] && source /etc/bash_completion
-# shellcheck disable=SC1090
-[ -d ~/.bash_completion.d/ ] && for f in ~/.bash_completion.d/*; do source "$f"; done
 # shellcheck disable=SC1090
 [ -f ~/.bash_aliases ] && source ~/.bash_aliases
 # shellcheck disable=SC1090
 [ -d ~/.bash_aliases.d/ ] && for f in ~/.bash_aliases.d/*; do source "$f"; done
+## ========= Completion definitions ========= ##
+# shellcheck disable=SC1091
+[ -f /etc/bash_completion ] && source /etc/bash_completion
+# shellcheck disable=SC1090
+[ -d ~/.bash_completion.d/ ] && for f in ~/.bash_completion.d/*; do source "$f"; done
 
 ## ========= MacOSX specified ========= ##
 if [ "$(uname)" = Darwin ]  || [ "$TERM_PROGRAM" = Apple_Terminal ]; then
