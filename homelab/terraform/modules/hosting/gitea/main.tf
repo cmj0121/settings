@@ -1,6 +1,6 @@
 locals {
   name     = "gitea"
-  version  = "9.5.1"
+  version  = "9.6.1"
   hostname = "${local.name}.${var.hostname}"
 
   admin_username = "gitea-admin"
