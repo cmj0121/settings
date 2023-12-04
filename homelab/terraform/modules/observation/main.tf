@@ -18,3 +18,8 @@ module "loki" {
   source    = "./loki"
   namespace = kubernetes_namespace.observation.metadata[0].name
 }
+
+module "tempo" {
+  source    = "./tempo"
+  namespace = kubernetes_namespace.observation.metadata[0].name
+}
