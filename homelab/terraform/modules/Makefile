@@ -1,4 +1,4 @@
-SUBDIR = based storage monitoring hosting
+SUBDIR = based storage observation hosting
 
 .PHONY: all clean test plan output output-json build destroy help
 
@@ -13,7 +13,7 @@ plan:			# plan the environment without applying
 build:			# apply the environment without asking
 
 destroy:		# destroy the environment
-	$(MAKE) -C monitoring $(MAKECMDGOALS)
+	$(MAKE) -C observation $(MAKECMDGOALS)
 	$(MAKE) -C hosting $(MAKECMDGOALS)
 	$(MAKE) -C storage    $(MAKECMDGOALS)
 	$(MAKE) -C based      $(MAKECMDGOALS)
@@ -29,6 +29,6 @@ all clean build plan output output-json: $(SUBDIR)
 $(SUBDIR):
 	$(MAKE) -C $@ $(MAKECMDGOALS)
 
-.PHONY: based storage monitoring hosting
+.PHONY: based storage observation hosting
 storage: based
-monitoring hosting: storage
+observation hosting: storage
