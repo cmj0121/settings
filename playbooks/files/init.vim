@@ -54,8 +54,9 @@ map <C-w> :tabclose<CR>
 map <C-n> :tabnext<CR>
 map <C-p> :tabprevious<CR>
 " Find files using Telescope command-line sugar.
-map <C-f> :Telescope find_files<CR>
-map <C-s> :Telescope live_grep<CR>
+nnoremap sf :Telescope find_files search_dirs={"."}<CR>
+nnoremap ss :Telescope live_grep search_dirs={"."}<CR>
+nnoremap sb :Telescope buffers<CR>
 
 " --------------------- "
 " global syntax setting "
