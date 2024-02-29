@@ -53,6 +53,9 @@ map <C-l> :source $MYVIMRC<CR> :echo "reload config"<CR>
 map <C-w> :tabclose<CR>
 map <C-n> :tabnext<CR>
 map <C-p> :tabprevious<CR>
+" Find files using Telescope command-line sugar.
+map <C-f> :Telescope find_files<CR>
+map <C-s> :Telescope live_grep<CR>
 
 " --------------------- "
 " global syntax setting "
@@ -93,6 +96,8 @@ Plug 'github/copilot.vim'
 " editor
 " =====================
 Plug 'scrooloose/nerdtree'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 " syntax highlight
 " =====================
 Plug 'hashivim/vim-terraform'
