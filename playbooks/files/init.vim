@@ -1,31 +1,21 @@
 " Author   cmj <cmj@cmj.tw>
 " Version  v0.0.1
 
-" -------------------- "
-" Global Environment   "
-" -------------------- "
-syntax on
-
-" set the tab/space width
+" --------------------------- "
+" Global Environment          "
+" --------------------------- "
 set tabstop=4				" tab equals to number of spaces
 set softtabstop=4
 set shiftwidth=4
 set nosmarttab
 set noautoindent
-" control the folder setting "
 set foldenable
 set foldmethod=indent
 set foldignore=
-" spell checking and search "
-"set spell
-"set spelllang=en,cjk
-"set spellfile=~/.config/nvim/spell/utf-8.add
 set showmatch				" show matching
 set hlsearch				" highlight search result
 set incsearch				" incremental search result
-" enable the footer control for vim "
 set modelines=4
-" performance and preference "
 set mouse=
 set number					" add line numbers
 set numberwidth=4
@@ -37,42 +27,26 @@ set updatetime=200			" written to disk if nothing is typed
 set visualbell				" use visual bell instead of beeping
 set exrc
 
-"set list					" displayed the empty characters
-"set listchars=tab:>.
+" change to the vim color scheme
+colorscheme vim
 
-" customized syntax highlight
+" --------------------------- "
+" customized syntax highlight "
+" --------------------------- "
 hi Whitespace cterm=NONE ctermbg=NONE ctermfg=gray
 hi Visual cterm=NONE ctermbg=yellow ctermfg=black
 
-" ------------------ "
-" Shortcut / Hotkey  "
-" ------------------ "
+" --------------------------- "
+" Shortcut / Hotkey           "
+" --------------------------- "
 imap <S-tab> <c-p>
 map <C-l> :source $MYVIMRC<CR> :echo "reload config"<CR>
-" Window Tab Control "
 map <C-w> :tabclose<CR>
 map <C-n> :tabnext<CR>
 map <C-p> :tabprevious<CR>
-" Find files using Telescope command-line sugar.
 nnoremap sf :Telescope find_files search_dirs={"."}<CR>
 nnoremap ss :Telescope live_grep search_dirs={"."}<CR>
 nnoremap sb :Telescope buffers<CR>
-
-" --------------------- "
-" global syntax setting "
-" --------------------- "
-augroup fsyntax
-autocmd BufRead,BufNewFile *.yaml setlocal ts=2 sw=2 expandtab
-autocmd BufRead,BufNewFile *.yml  setlocal ts=2 sw=2 expandtab
-autocmd BufRead,BufNewFile *.py   setlocal ts=4 sw=4 expandtab
-autocmd BufRead,BufNewFile *.html setlocal ts=2 sw=2 expandtab
-autocmd BufRead,BufNewFile *.htm  setlocal ts=2 sw=2 expandtab
-autocmd BufRead,BufNewFile *.js   setlocal ts=2 sw=2 expandtab
-autocmd BufRead,BufNewFile *.dart setlocal ts=2 sw=2 expandtab
-autocmd BufRead,BufNewFile *.css  setlocal ts=2 sw=2 expandtab
-autocmd BufRead,BufNewFile *.scss setlocal ts=2 sw=2 expandtab
-autocmd BufRead,BufNewFile *.zg   setlocal ts=4 sw=4 ft=zerg
-augroup END
 
 " --------------------- "
 " skeleton              "
@@ -95,21 +69,16 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'github/copilot.vim'
 " editor
-" =====================
 Plug 'scrooloose/nerdtree'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 " syntax highlight
-" =====================
 Plug 'hashivim/vim-terraform'
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'Glench/Vim-Jinja2-Syntax'
 call plug#end()
 
-let g:copilot_filetypes = {
-	\ 'markdown': v:true
-	\ }
-
+" --------------------------- "
+"  extra launcher             "
+" --------------------------- "
 lua << __EOF__
 -- use for the numToStr/Comment.nvim
 -- default keymap
@@ -129,7 +98,6 @@ null_ls.setup({
 		null_ls.builtins.diagnostics.hadolint,
 		-- for Python
 		null_ls.builtins.diagnostics.actionlint,
-		null_ls.builtins.diagnostics.flake8,
 	    null_ls.builtins.diagnostics.mypy,
 		null_ls.builtins.formatting.ruff,
 		null_ls.builtins.formatting.reorder_python_imports,
