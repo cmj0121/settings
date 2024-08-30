@@ -49,6 +49,13 @@ nnoremap ss :Telescope live_grep search_dirs={"."}<CR>
 nnoremap sb :Telescope buffers<CR>
 
 " --------------------- "
+" global syntax setting "
+" --------------------- "
+augroup fsyntax
+autocmd BufRead,BufNewFile *.zg   setlocal ts=4 sw=4 ft=zerg
+augroup END
+
+" --------------------- "
 " skeleton              "
 " --------------------- "
 augroup templates
@@ -63,17 +70,17 @@ map <C-u> :PlugUpdate<CR> :PlugUpgrade<CR>
 map tt :NERDTree<CR>
 
 call plug#begin('~/.vim/plugged')
-Plug 'numToStr/Comment.nvim'
-Plug 'rhysd/git-messenger.vim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'jose-elias-alvarez/null-ls.nvim'
-Plug 'github/copilot.vim'
+Plug 'numToStr/Comment.nvim'           " quickcomment the source code
+Plug 'rhysd/git-messenger.vim'         " reveal the commit messages under the cursor
+Plug 'nvim-lua/plenary.nvim'           " All the lua functions I don't want to write twice
+Plug 'github/copilot.vim'              " Neovim plugin for GitHub Copilot
 " editor
-Plug 'scrooloose/nerdtree'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'scrooloose/nerdtree'             " A tree explorer plugin for vim.
+Plug 'nvim-telescope/telescope.nvim'   " Find, Filter, Preview, Pick. All lua, all the time.
+Plug 'neovim/nvim-lspconfig'
 " syntax highlight
 Plug 'hashivim/vim-terraform'
+Plug 'dart-lang/dart-vim-plugin'
 call plug#end()
 
 " --------------------------- "
@@ -87,27 +94,9 @@ lua << __EOF__
 local cmt = require("Comment")
 cmt.setup()
 
--- use for jose-elias-alvarez/null-ls.nvim
-local null_ls = require("null-ls")
-null_ls.setup({
-	sources = {
-		-- for schell script
-		null_ls.builtins.diagnostics.shellcheck,
-		null_ls.builtins.diagnostics.checkmake,
-		null_ls.builtins.diagnostics.commitlint,
-		null_ls.builtins.diagnostics.hadolint,
-		-- for Python
-		null_ls.builtins.diagnostics.actionlint,
-	    null_ls.builtins.diagnostics.mypy,
-		null_ls.builtins.formatting.ruff,
-		null_ls.builtins.formatting.reorder_python_imports,
-		-- for Go
-		null_ls.builtins.code_actions.gomodifytags,
-		null_ls.builtins.code_actions.impl,
-		-- for GitHub Action
-		null_ls.builtins.diagnostics.actionlint,
-		-- for Grammarly
-		null_ls.builtins.diagnostics.write_good,
-	},
-})
+-- use for neovim/nvim-lspconfig
+-- go install github.com/nametake/golangci-lint-langserver@latest
+-- go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+require'lspconfig'.golangci_lint_ls.setup{}
+require'lspconfig'.dartls.setup{}
 __EOF__
