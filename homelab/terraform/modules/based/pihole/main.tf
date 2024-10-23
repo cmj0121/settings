@@ -1,7 +1,7 @@
 locals {
   name         = "pihole"
-  helm_version = "2.18.0"
   namespace    = "pihole"
+  helm_version = var.helm_version
 
   hostname = "${local.name}.${var.hostname}"
 }
@@ -19,7 +19,7 @@ resource "helm_release" "pihole" {
   # repository = "https://mojo2600.github.io/pihole-kubernetes/"
   # chart      = local.name
   # version    = local.helm_version
-  chart     = "https://github.com/MoJo2600/pihole-kubernetes/releases/download/pihole-2.18.0/pihole-2.18.0.tgz"
+  chart     = "https://github.com/MoJo2600/pihole-kubernetes/releases/download/pihole-${var.helm_version}/pihole-${var.helm_version}.tgz"
   namespace = local.namespace
 
   values = [templatefile("${path.module}/values.yml", {

@@ -3,6 +3,12 @@ variable "hostname" {
   type        = string
 }
 
+variable "helm_version" {
+  description = "The version of the external-dns Helm chart to use"
+  type        = string
+  default     = "1.13.1"
+}
+
 variable "pihole_service_name" {
   description = "The name of the Pi-hole service"
   type        = string
