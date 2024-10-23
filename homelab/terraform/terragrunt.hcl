@@ -6,7 +6,8 @@ locals {
 }
 
 inputs = {
-  hostname = "home.lab"
+  hostname           = "home.lab"
+  storage_class_name = "local-usb-sc"
 }
 
 remote_state {

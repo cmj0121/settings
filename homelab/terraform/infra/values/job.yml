@@ -27,4 +27,4 @@ spec:
       volumes:
         - name: ${ pvc-name }
           persistentVolumeClaim:
-            claimName: ${ pvc-claim }
+            claimName: ${ pvc-name }
