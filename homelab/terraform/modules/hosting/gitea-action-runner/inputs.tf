@@ -4,6 +4,11 @@ variable "namespace" {
   default     = "default"
 }
 
+variable "storage_class_name" {
+  description = "The name of the storage class to use for the Redis PVC"
+  type        = string
+}
+
 variable "gitea_service" {
   description = "The gitea service to connect to"
   type        = string

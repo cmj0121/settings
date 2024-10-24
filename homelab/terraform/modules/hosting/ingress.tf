@@ -21,27 +21,3 @@ resource "kubernetes_manifest" "gitea-ssh-vs" {
     service_port = 2222
   }))
 }
-
-resource "kubernetes_manifest" "argocd-vs" {
-  manifest = yamldecode(templatefile("${path.module}/templates/virtual_service.yml", {
-    name      = "argocd-vs"
-    namespace = local.namespace
-    hostname  = module.argocd.hostname
-
-    gateway      = kubernetes_manifest.hosting-gw.manifest.metadata.name
-    port         = 80
-    service_name = "argocd-server"
-  }))
-}
-
-resource "kubernetes_manifest" "registry-vs" {
-  manifest = yamldecode(templatefile("${path.module}/templates/virtual_service.yml", {
-    name      = "registry-vs"
-    namespace = local.namespace
-    hostname  = module.registry.hostname
-
-    gateway      = kubernetes_manifest.hosting-gw.manifest.metadata.name
-    port         = 80
-    service_name = "registry"
-  }))
-}

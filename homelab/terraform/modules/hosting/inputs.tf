@@ -9,6 +9,11 @@ variable "redis_host" {
   default     = "redis-master.storage.svc.cluster.local"
 }
 
+variable "storage_class_name" {
+  description = "The name of the storage class to use for the Redis PVC"
+  type        = string
+}
+
 variable "redis_port" {
   description = "The port of the Redis server"
   type        = number

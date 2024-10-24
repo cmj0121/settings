@@ -7,8 +7,9 @@ resource "kubernetes_manifest" "pvc" {
   for_each = toset(local.tokens)
 
   manifest = yamldecode(templatefile("${path.module}/values/pvc.yml", {
-    name      = "gitea-action-runner-${each.key}",
-    namespace = var.namespace,
+    name             = "gitea-action-runner-${each.key}",
+    namespace        = var.namespace,
+    storageClassName = var.storage_class_name,
   }))
 }
 

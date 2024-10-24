@@ -18,24 +18,3 @@ output "gitea_admin_password" {
   value       = module.gitea.admin_password
   sensitive   = true
 }
-
-output "argocd_hostname" {
-  description = "The hostname of the ArgoCD instance"
-  value       = module.argocd.hostname
-}
-
-output "argocd_admin_password" {
-  description = "The admin password for the ArgoCD instance"
-  value       = module.argocd.admin_password
-  sensitive   = true
-}
-
-output "registry_hostname" {
-  description = "The hostname of the Registry instance"
-  value       = module.registry.hostname
-}
-
-output "registry_service_name" {
-  description = "The service name of the Registry instance"
-  value       = module.registry.servicename
-}

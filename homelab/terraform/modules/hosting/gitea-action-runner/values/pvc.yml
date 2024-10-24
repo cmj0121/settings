@@ -7,7 +7,7 @@ metadata:
   namespace: ${ namespace }
 
 spec:
-  storageClassName: nfs-client
+  storageClassName: ${ storageClassName }
   accessModes:
     - ReadWriteOnce
   resources:
