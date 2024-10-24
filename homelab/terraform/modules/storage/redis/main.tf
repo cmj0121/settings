@@ -1,7 +1,6 @@
 locals {
-  name    = "redis"
-  version = "18.2.0"
-
+  name     = "redis"
+  version  = var.helm_version
   hostname = "${local.name}.${var.hostname}"
   port     = 6379
 }
@@ -33,10 +32,4 @@ resource "kubernetes_manifest" "virtual-service" {
     service_name = "${local.name}-master"
     service_port = local.port
   }))
-}
-
-resource "random_password" "password" {
-  length           = 16
-  special          = true
-  override_special = "!#"
 }

@@ -3,6 +3,11 @@ variable "hostname" {
   type        = string
 }
 
+variable "helm_version" {
+  description = "The version of the Helm chart to deploy"
+  type        = string
+}
+
 variable "namespace" {
   description = "The k8s namespace to deploy the helm chart"
   type        = string
