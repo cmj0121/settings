@@ -1,3 +1,0 @@
----
-global:
-  storageClass: "${ storage_class_name }"

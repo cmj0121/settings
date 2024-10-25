@@ -1,6 +1,0 @@
----
-global:
-  storageClass: "${ storage_class_name }"
-
-promtail:
-  enabled: true
