@@ -1,5 +1,5 @@
 " Author   cmj <cmj@cmj.tw>
-" Version  v0.0.1
+" Version  v0.1.0
 
 " --------------------------- "
 " Global Environment          "
@@ -53,6 +53,7 @@ nnoremap sb :Telescope buffers<CR>
 " --------------------- "
 augroup fsyntax
 autocmd BufRead,BufNewFile *.zg   setlocal ts=4 sw=4 ft=zerg
+autocmd BufRead,BufNewFile *.tf	  setlocal ts=2 sw=2 expandtab ft=terraform
 augroup END
 
 " --------------------- "
@@ -68,6 +69,9 @@ augroup END
 map <C-i> :PlugInstall<CR>
 map <C-u> :PlugUpdate<CR> :PlugUpgrade<CR>
 map tt :NERDTree<CR>
+map li :LspInfo<CR>
+map lr :LspRestart<CR>
+map ll :LspLog<CR>
 
 call plug#begin('~/.vim/plugged')
 Plug 'numToStr/Comment.nvim'           " quickcomment the source code
@@ -95,8 +99,36 @@ local cmt = require("Comment")
 cmt.setup()
 
 -- use for neovim/nvim-lspconfig
+local lspconfig = require('lspconfig')
+lspconfig.asm_lsp.setup{}
+lspconfig.awk_ls.setup{}
+-- npm install -g dockerfile-language-server-nodejs
+lspconfig.dockerls.setup {
+    settings = {
+        docker = {
+	    languageserver = {
+	        formatter = {
+		    ignoreMultilineInstructions = true,
+		},
+	    },
+	}
+    }
+}
 -- go install github.com/nametake/golangci-lint-langserver@latest
 -- go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-require'lspconfig'.golangci_lint_ls.setup{}
-require'lspconfig'.dartls.setup{}
+lspconfig.golangci_lint_ls.setup{}
+lspconfig.dartls.setup{}
+lspconfig.pylsp.setup{
+  settings = {
+	pylsp = {
+        plugins = {
+          autopep8 = {enabled = false},
+          pycodestyle = {enabled = false},
+          pyflakes = {enabled = false},
+          ruff = {enabled = true},
+          mypy = {enabled = true, live_mode = true},
+      }
+    }
+  }
+}
 __EOF__
